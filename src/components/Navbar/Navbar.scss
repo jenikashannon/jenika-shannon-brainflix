@@ -1,0 +1,32 @@
+@use "../../styles/partials/padding" as *;
+
+.navbar {
+	@extend .section-padding;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	&__logo {
+		@extend .component-margin;
+		width: 120px;
+	}
+
+	&-search {
+		@extend .component-margin--bottom;
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+
+		&__field {
+			@extend .component-margin--right;
+			flex-grow: 1;
+		}
+	}
+
+	&__avatar {
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		flex-shrink: 0;
+	}
+}

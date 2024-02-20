@@ -1,0 +1,23 @@
+.section-padding {
+	padding: 0 16px;
+}
+
+.component-margin {
+	margin: 16px;
+
+	&--horizontal {
+		margin: 0 16px;
+	}
+
+	&--vertical {
+		margin: 16px 0;
+	}
+
+	&--right {
+		margin-right: 16px;
+	}
+
+	&--bottom {
+		margin-bottom: 16px;
+	}
+}
