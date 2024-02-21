@@ -1,23 +1,77 @@
-.section-padding {
-	padding: 0 16px;
+@use "./mixins";
+
+$mobile-padding: 16px;
+$tablet-padding: 24px;
+$desktop-padding: 24px;
+
+@mixin section-padding {
+	padding: 0 $mobile-padding;
+
+	@include mixins.tablet {
+		padding: 0 $tablet-padding;
+	}
+
+	@include mixins.desktop {
+		padding: 0 80px;
+	}
 }
 
-.component-margin {
-	margin: 16px;
+@mixin component-margin {
+	margin: $mobile-padding;
 
-	&--horizontal {
-		margin: 0 16px;
+	@include mixins.tablet {
+		margin: $tablet-padding;
 	}
 
-	&--vertical {
-		margin: 16px 0;
+	@include mixins.desktop {
+		margin: $desktop-padding;
+	}
+}
+
+@mixin component-margin--horizontal {
+	margin: 0 $mobile-padding;
+
+	@include mixins.tablet {
+		margin: 0 $tablet-padding;
 	}
 
-	&--right {
-		margin-right: 16px;
+	@include mixins.desktop {
+		margin: 0 $desktop-padding;
+	}
+}
+
+@mixin component-margin--vertical {
+	margin: $mobile-padding 0;
+
+	@include mixins.tablet {
+		margin: $tablet-padding 0;
 	}
 
-	&--bottom {
-		margin-bottom: 16px;
+	@include mixins.desktop {
+		margin: $desktop-padding 0;
+	}
+}
+
+@mixin component-margin--right {
+	margin-right: $mobile-padding;
+
+	@include mixins.tablet {
+		margin-right: $tablet-padding;
+	}
+
+	@include mixins.desktop {
+		margin-right: $desktop-padding;
+	}
+}
+
+@mixin component-margin--bottom {
+	margin-bottom: $mobile-padding;
+
+	@include mixins.tablet {
+		margin-bottom: $tablet-padding;
+	}
+
+	@include mixins.desktop {
+		margin-bottom: $desktop-padding;
 	}
 }

@@ -1,32 +1,63 @@
-@use "../../styles/partials/padding" as *;
+@use "../../styles/partials/padding";
+@use "../../styles/partials/text-styles";
+@use "../../styles/partials/mixins";
+@use "../../styles/partials/colors";
 
 .navbar {
-	@extend .section-padding;
+	@include padding.section-padding;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 
+	@include mixins.tablet {
+		@include padding.component-margin--vertical;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	&__container {
+		display: flex;
+		// border: 2px red solid;
+	}
+
 	&__logo {
-		@extend .component-margin;
 		width: 120px;
+		@include padding.component-margin--vertical;
+
+		@include mixins.tablet {
+			margin: 0;
+		}
 	}
 
 	&-search {
-		@extend .component-margin--bottom;
+		@include padding.component-margin--bottom;
 		width: 100%;
 		display: flex;
 		justify-content: space-between;
 
-		&__field {
-			@extend .component-margin--right;
-			flex-grow: 1;
+		@include mixins.tablet {
+			width: 240px;
+			margin-bottom: 0;
 		}
-	}
 
-	&__avatar {
-		width: 36px;
-		height: 36px;
-		border-radius: 50%;
-		flex-shrink: 0;
+		&__field {
+			@include padding.component-margin--right;
+			@extend .body-copy;
+			flex-grow: 1;
+			background: url("../../assets/icons/search.svg") no-repeat left;
+			background-position: 5%;
+			padding-left: 32px;
+			border: colors.$mercury 1px solid;
+			border-radius: 4px;
+
+			&:focus {
+				border: 2px colors.$bf-blue solid;
+			}
+
+			@include mixins.tablet {
+				@include padding.component-margin--horizontal;
+			}
+		}
 	}
 }

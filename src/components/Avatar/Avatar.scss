@@ -1,0 +1,17 @@
+@use "../../styles/partials/colors";
+@use "../../styles/partials/mixins";
+
+.avatar {
+	display: flex;
+	overflow: hidden;
+	width: 36px;
+	height: 36px;
+	background-color: colors.$mercury;
+	border-radius: 50%;
+	flex-shrink: 0;
+
+	@include mixins.tablet {
+		width: 40px;
+		height: 40px;
+	}
+}
