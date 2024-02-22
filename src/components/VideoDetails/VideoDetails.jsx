@@ -5,10 +5,13 @@ import Divider from "../Divider/Divider";
 import NameAndDate from "../NameAndDate/NameAndDate";
 import CommentForm from "../CommentForm/CommentForm";
 import CommentList from "../CommentList/CommentList";
+import { useState } from "react";
 
 function VideoDetails({ video }) {
 	const { title, channel, description, views, likes, timestamp, comments } =
 		video;
+
+	const [commentList, setCommentList] = useState(comments);
 
 	return (
 		<section className='video-details'>
@@ -29,9 +32,9 @@ function VideoDetails({ video }) {
 			</div>
 			<Divider />
 			<p className='video-details__description'>{description}</p>
-			<CommentForm />
+			<CommentForm commentList={commentList} setCommentList={setCommentList} />
 			<Divider />
-			<CommentList comments={comments} />
+			<CommentList commentList={commentList} />
 		</section>
 	);
 }

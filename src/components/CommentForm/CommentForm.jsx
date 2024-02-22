@@ -5,7 +5,7 @@ import Button from "../Button/Button";
 function CommentForm() {
 	return (
 		<article className='comments'>
-			<p className='comment__count'></p>
+			<p className='comments__count'></p>
 			<div className='comment-form'>
 				<Avatar />
 				<form>

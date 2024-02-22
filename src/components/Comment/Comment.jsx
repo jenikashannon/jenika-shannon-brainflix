@@ -5,7 +5,6 @@ import Divider from "../Divider/Divider";
 
 function Comment({ commentObj }) {
 	const { comment, name, timestamp } = commentObj;
-	console.log(timestamp);
 	return (
 		<div className='comment'>
 			<Avatar />

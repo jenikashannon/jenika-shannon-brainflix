@@ -1,12 +1,12 @@
 import "./CommentList.scss";
 import Comment from "../Comment/Comment";
 
-function CommentList({ comments }) {
-	comments.sort((a, b) => {
+function CommentList({ commentList }) {
+	commentList.sort((a, b) => {
 		return b.timestamp - a.timestamp;
 	});
 
-	return comments.map((comment) => {
+	return commentList.map((comment) => {
 		return <Comment commentObj={comment} />;
 	});
 }
