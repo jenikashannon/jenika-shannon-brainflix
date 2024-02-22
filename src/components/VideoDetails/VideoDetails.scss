@@ -1,0 +1,31 @@
+@use "../../styles/partials/padding";
+
+.video-details {
+	@include padding.section-padding;
+
+	&__title {
+		@include padding.component-padding--vertical;
+	}
+
+	&__metadata-container,
+	&__stats-container,
+	&__views,
+	&__likes {
+		display: flex;
+	}
+
+	&__metadata-container {
+		@include padding.section-padding;
+		@include padding.component-padding--vertical;
+	}
+
+	&__stats-container {
+		flex-direction: column;
+		justify-content: space-between;
+		@include padding.component-padding--left;
+	}
+
+	&__description {
+		@include padding.component-padding--vertical;
+	}
+}

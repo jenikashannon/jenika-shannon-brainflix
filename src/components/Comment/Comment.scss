@@ -1,0 +1,10 @@
+@use "../../styles/partials/padding";
+
+.comment {
+	@include padding.component-padding--vertical;
+	display: flex;
+
+	&__text-container {
+		@include padding.component-padding--left;
+	}
+}

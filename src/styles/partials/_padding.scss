@@ -16,62 +16,86 @@ $desktop-padding: 24px;
 	}
 }
 
-@mixin component-margin {
-	margin: $mobile-padding;
+@mixin component-padding {
+	padding: $mobile-padding;
 
 	@include mixins.tablet {
-		margin: $tablet-padding;
+		padding: $tablet-padding;
 	}
 
 	@include mixins.desktop {
-		margin: $desktop-padding;
+		padding: $desktop-padding;
 	}
 }
 
-@mixin component-margin--horizontal {
-	margin: 0 $mobile-padding;
+@mixin component-padding--horizontal {
+	padding: 0 $mobile-padding;
 
 	@include mixins.tablet {
-		margin: 0 $tablet-padding;
+		padding: 0 $tablet-padding;
 	}
 
 	@include mixins.desktop {
-		margin: 0 $desktop-padding;
+		padding: 0 $desktop-padding;
 	}
 }
 
-@mixin component-margin--vertical {
-	margin: $mobile-padding 0;
+@mixin component-padding--vertical {
+	padding: $mobile-padding 0;
 
 	@include mixins.tablet {
-		margin: $tablet-padding 0;
+		padding: $tablet-padding 0;
 	}
 
 	@include mixins.desktop {
-		margin: $desktop-padding 0;
+		padding: $desktop-padding 0;
 	}
 }
 
-@mixin component-margin--right {
-	margin-right: $mobile-padding;
+@mixin component-padding--right {
+	padding-right: $mobile-padding;
 
 	@include mixins.tablet {
-		margin-right: $tablet-padding;
+		padding-right: $tablet-padding;
 	}
 
 	@include mixins.desktop {
-		margin-right: $desktop-padding;
+		padding-right: $desktop-padding;
 	}
 }
 
-@mixin component-margin--bottom {
-	margin-bottom: $mobile-padding;
+@mixin component-padding--left {
+	padding-left: $mobile-padding;
 
 	@include mixins.tablet {
-		margin-bottom: $tablet-padding;
+		padding-left: $tablet-padding;
 	}
 
 	@include mixins.desktop {
-		margin-bottom: $desktop-padding;
+		padding-left: $desktop-padding;
+	}
+}
+
+@mixin component-padding--top {
+	padding-top: $mobile-padding;
+
+	@include mixins.tablet {
+		padding-top: $tablet-padding;
+	}
+
+	@include mixins.desktop {
+		padding-top: $desktop-padding;
+	}
+}
+
+@mixin component-padding--bottom {
+	padding-bottom: $mobile-padding;
+
+	@include mixins.tablet {
+		padding-bottom: $tablet-padding;
+	}
+
+	@include mixins.desktop {
+		padding-bottom: $desktop-padding;
 	}
 }

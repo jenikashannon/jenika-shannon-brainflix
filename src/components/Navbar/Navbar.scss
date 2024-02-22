@@ -5,14 +5,14 @@
 
 .navbar {
 	@include padding.section-padding;
-	@include padding.component-margin--bottom;
+	@include padding.component-padding--bottom;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 
 	@include mixins.tablet {
-		@include padding.component-margin--vertical;
+		@include padding.component-padding--vertical;
 		flex-direction: row;
 		justify-content: space-between;
 	}
@@ -23,7 +23,7 @@
 
 	&__logo {
 		width: 120px;
-		@include padding.component-margin--vertical;
+		@include padding.component-padding--vertical;
 
 		@include mixins.tablet {
 			margin: 0;
@@ -31,7 +31,7 @@
 	}
 
 	&-search {
-		@include padding.component-margin--bottom;
+		@include padding.component-padding--bottom;
 		width: 100%;
 		display: flex;
 		justify-content: space-between;
@@ -42,7 +42,7 @@
 		}
 
 		&__field {
-			@include padding.component-margin--right;
+			@include padding.component-padding--right;
 			@extend .body-copy;
 			flex-grow: 1;
 			background: url("../../assets/icons/search.svg") no-repeat left;
@@ -56,7 +56,7 @@
 			}
 
 			@include mixins.tablet {
-				@include padding.component-margin--horizontal;
+				@include padding.component-padding--horizontal;
 			}
 		}
 	}

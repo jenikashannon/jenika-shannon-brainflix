@@ -32,7 +32,11 @@ function VideoDetails({ video }) {
 			</div>
 			<Divider />
 			<p className='video-details__description'>{description}</p>
-			<CommentForm commentList={commentList} setCommentList={setCommentList} />
+			<CommentForm
+				count={commentList.length}
+				commentList={commentList}
+				setCommentList={setCommentList}
+			/>
 			<Divider />
 			<CommentList commentList={commentList} />
 		</section>

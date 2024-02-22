@@ -1,0 +1,11 @@
+@use "../../styles/partials/padding";
+.name-and-date {
+	@include padding.component-padding--bottom;
+	display: flex;
+	justify-content: space-between;
+
+	&--video {
+		padding: 0;
+		flex-direction: column;
+	}
+}

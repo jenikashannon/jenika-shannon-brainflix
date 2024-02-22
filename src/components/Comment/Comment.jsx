@@ -12,7 +12,6 @@ function Comment({ commentObj }) {
 				<NameAndDate name={name} date={timestamp} />
 				<p className='comment__content'>{comment}</p>
 			</div>
-			<Divider />
 		</div>
 	);
 }

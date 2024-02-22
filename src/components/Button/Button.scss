@@ -19,7 +19,7 @@
 
 	@include mixins.tablet {
 		width: 150px;
-		@include padding.component-margin--right;
+		@include padding.component-padding--right;
 	}
 
 	&__icon {

@@ -1,5 +1,6 @@
 import "./CommentList.scss";
 import Comment from "../Comment/Comment";
+import Divider from "../Divider/Divider";
 
 function CommentList({ commentList }) {
 	commentList.sort((a, b) => {
@@ -7,7 +8,12 @@ function CommentList({ commentList }) {
 	});
 
 	return commentList.map((comment) => {
-		return <Comment commentObj={comment} />;
+		return (
+			<>
+				<Comment commentObj={comment} />
+				<Divider />
+			</>
+		);
 	});
 }
 
