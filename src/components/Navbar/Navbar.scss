@@ -42,7 +42,6 @@
 		}
 
 		&__field {
-			@include padding.component-padding--right;
 			@extend .body-copy;
 			flex-grow: 1;
 			background: url("../../assets/icons/search.svg") no-repeat left;
@@ -50,6 +49,7 @@
 			padding-left: 32px;
 			border: colors.$mercury 1px solid;
 			border-radius: 4px;
+			margin-right: 1rem;
 
 			&:focus {
 				border: 2px colors.$bf-blue solid;

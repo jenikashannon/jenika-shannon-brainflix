@@ -7,7 +7,7 @@ import VideoDetails from "./components/VideoDetails/VideoDetails";
 import { useState } from "react";
 
 function App() {
-	const [videoList, setVideoList] = useState(videos);
+	const [videoList] = useState(videos);
 	const [mainVideo, setMainVideo] = useState(
 		"84e96018-4022-434e-80bf-000ce4cd12b8"
 	);
