@@ -1,6 +1,21 @@
 @use "../../styles/partials/colors";
+@use "../../styles/partials/mixins";
+
+.video-player-container {
+	width: 100%;
+	background-color: colors.$bf-dark-black;
+	display: flex;
+	justify-content: center;
+}
 
 .video-player {
 	width: 100%;
-	background-color: colors.$bf-black;
+
+	@include mixins.tablet {
+		width: 90%;
+	}
+
+	@include mixins.desktop {
+		width: 70%;
+	}
 }
