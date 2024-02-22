@@ -1,17 +1,28 @@
 @use "../../styles/partials/padding";
 @use "../../styles/partials/colors";
 @use "../../styles/partials/mixins";
+@use "../../styles/partials/text-styles" as *;
 
-.comments__container {
-	@include padding.component-padding--vertical;
-	display: flex;
+.comments {
+	&__count {
+		@extend .body-copy;
+		font-weight: 600;
+	}
+
+	&__container {
+		@include padding.component-padding--vertical;
+		display: flex;
+	}
 }
 
 .comment-form {
 	@include padding.component-padding--left;
 
 	&__label {
+		@extend .labels-and-buttons;
+		font-weight: 600;
 		margin-bottom: 40px;
+		color: colors.$silver;
 	}
 
 	&__field {
@@ -28,6 +39,10 @@
 
 		@include mixins.tablet {
 			min-height: 40px;
+		}
+
+		&::placeholder {
+			color: colors.$bf-black;
 		}
 	}
 }

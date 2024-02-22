@@ -1,11 +1,27 @@
 @use "../../styles/partials/padding";
+@use "../../styles/partials/text-styles";
+@use "../../styles/partials/colors";
+
 .name-and-date {
 	@include padding.component-padding--bottom;
+	@extend .body-copy;
 	display: flex;
 	justify-content: space-between;
 
 	&--video {
 		padding: 0;
 		flex-direction: column;
+	}
+
+	&__name {
+		font-weight: 600;
+
+		&--video {
+			@include padding.component-padding--bottom;
+		}
+	}
+
+	&__date {
+		color: colors.$silver;
 	}
 }

@@ -1,4 +1,5 @@
 @use "../../styles/partials/padding";
+@use "../../styles/partials/text-styles" as *;
 
 .comment {
 	@include padding.component-padding--vertical;
@@ -6,5 +7,9 @@
 
 	&__text-container {
 		@include padding.component-padding--left;
+	}
+
+	&__content {
+		@extend .body-copy;
 	}
 }

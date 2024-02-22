@@ -9,7 +9,13 @@ function NameAndDate({ name, date, type }) {
 					: "name-and-date"
 			}
 		>
-			<p className='name-and-date__name'>
+			<p
+				className={
+					type == "video"
+						? "name-and-date__name name-and-date__name--video"
+						: "name-and-date__name"
+				}
+			>
 				{type === "video" ? `By ${name}` : name}
 			</p>
 			<p className='name-and-date__date'>{formatTimestamp(date)}</p>
