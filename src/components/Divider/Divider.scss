@@ -1,0 +1,14 @@
+@use "../../styles/partials/colors";
+@use "../../styles/partials/mixins";
+
+.divider {
+	width: 100%;
+	height: 1px;
+	background-color: colors.$mercury;
+
+	&--mobile {
+		@include mixins.tablet {
+			display: none;
+		}
+	}
+}
