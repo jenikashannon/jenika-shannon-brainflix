@@ -11,7 +11,7 @@ function NameAndDate({ name, date, type }) {
 		>
 			<p
 				className={
-					type == "video"
+					type === "video"
 						? "name-and-date__name name-and-date__name--video"
 						: "name-and-date__name"
 				}

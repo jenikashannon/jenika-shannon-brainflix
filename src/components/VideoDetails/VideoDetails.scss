@@ -1,9 +1,16 @@
 @use "../../styles/partials/padding";
 @use "../../styles/partials/colors";
+@use "../../styles/partials/mixins";
 @use "../../styles/partials/text-styles" as *;
 
 .video-details {
 	@include padding.section-padding;
+	flex-shrink: 0;
+	flex-basis: 70%;
+
+	@include mixins.desktop {
+		padding-right: 0;
+	}
 
 	&__title {
 		@include padding.component-padding--vertical;

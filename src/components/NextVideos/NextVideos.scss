@@ -1,0 +1,23 @@
+@use "../../styles/partials/padding";
+@use "../../styles/partials/text-styles" as *;
+@use "../../styles/partials/colors";
+@use "../../styles/partials/mixins";
+
+.next-videos {
+	display: flex;
+
+	&__container {
+		padding-left: 1.5rem;
+	}
+
+	&__title {
+		@extend .section-header;
+		font-weight: 600;
+		color: colors.$silver;
+		padding: 24px 0 16px 0;
+
+		@include mixins.tablet {
+			padding: 36px 0 24px 0;
+		}
+	}
+}

@@ -1,0 +1,48 @@
+@use "../../styles/partials/text-styles" as *;
+@use "../../styles/partials/colors";
+@use "../../styles/partials/padding";
+@use "../../styles/partials/mixins";
+
+.video-card {
+	@include padding.component-padding--bottom;
+	width: 100%;
+	display: flex;
+
+	&__image {
+		width: 100%;
+
+		&-container {
+			background-color: colors.$mercury;
+			border-radius: 4px;
+			overflow: hidden;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-basis: 33%;
+			flex-shrink: 0;
+
+			@include mixins.tablet {
+				flex-basis: 17%;
+			}
+
+			@include mixins.desktop {
+				flex-basis: 30%;
+			}
+		}
+	}
+
+	&__text-container {
+		@include padding.component-padding--left;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	&__title {
+		@extend .subheader;
+	}
+
+	&__channel {
+		@extend .body-copy;
+	}
+}
