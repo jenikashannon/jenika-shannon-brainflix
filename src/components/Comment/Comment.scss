@@ -1,9 +1,15 @@
 @use "../../styles/partials/padding";
 @use "../../styles/partials/text-styles" as *;
+@use "../../styles/partials/mixins";
 
 .comment {
 	@include padding.component-padding--vertical;
 	display: flex;
+
+	@include mixins.desktop {
+		padding-right: 1.5rem;
+		padding-left: 1.5rem;
+	}
 
 	&__text-container {
 		@include padding.component-padding--left;

@@ -6,15 +6,19 @@
 .video-details {
 	@include padding.section-padding;
 	flex-shrink: 0;
-	flex-basis: 70%;
 
 	@include mixins.desktop {
 		padding-right: 0;
+		flex-basis: 62%;
 	}
 
 	&__title {
-		@include padding.component-padding--vertical;
 		@extend .page-header;
+		@include padding.headline-padding;
+
+		@include mixins.tablet {
+			padding-bottom: 1rem;
+		}
 	}
 
 	&__metadata-container,
@@ -27,12 +31,33 @@
 	&__metadata-container {
 		@include padding.section-padding;
 		@include padding.component-padding--vertical;
+
+		@include mixins.tablet {
+			justify-content: space-between;
+			padding: 0 0 0.5rem 0;
+		}
 	}
 
 	&__stats-container {
 		flex-direction: column;
 		justify-content: space-between;
+
+		@include mixins.tablet {
+			flex-direction: row;
+		}
+
+		@include mixins.desktop {
+			margin-right: 1.5rem;
+		}
+	}
+
+	&__views,
+	&__likes {
 		padding-left: 1.5rem;
+
+		@include mixins.tablet {
+			align-items: center;
+		}
 	}
 
 	&__views-icon,
@@ -49,5 +74,9 @@
 	&__description {
 		@include padding.component-padding--vertical;
 		@extend .body-copy;
+
+		@include mixins.desktop {
+			margin-right: 1.5rem;
+		}
 	}
 }

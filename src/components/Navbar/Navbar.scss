@@ -13,6 +13,7 @@
 
 	@include mixins.tablet {
 		@include padding.component-padding--vertical;
+		@include padding.section-padding;
 		flex-direction: row;
 		justify-content: space-between;
 	}
@@ -38,7 +39,7 @@
 
 		@include mixins.tablet {
 			width: 240px;
-			margin-bottom: 0;
+			padding-bottom: 0;
 		}
 
 		&__field {

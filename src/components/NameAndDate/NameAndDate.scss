@@ -1,16 +1,21 @@
 @use "../../styles/partials/padding";
 @use "../../styles/partials/text-styles";
 @use "../../styles/partials/colors";
+@use "../../styles/partials/mixins";
 
 .name-and-date {
-	@include padding.component-padding--bottom;
 	@extend .body-copy;
 	display: flex;
 	justify-content: space-between;
+	padding-bottom: 0.75rem;
 
 	&--video {
 		padding: 0;
 		flex-direction: column;
+
+		@include mixins.tablet {
+			flex-direction: row;
+		}
 	}
 
 	&__name {
@@ -18,6 +23,11 @@
 
 		&--video {
 			@include padding.component-padding--bottom;
+
+			@include mixins.tablet {
+				padding-bottom: 0;
+				@include padding.component-padding--right;
+			}
 		}
 	}
 

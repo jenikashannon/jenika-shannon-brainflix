@@ -8,11 +8,11 @@ $desktop-padding: 24px;
 	padding: 0 $mobile-padding;
 
 	@include mixins.tablet {
-		padding: 0 $tablet-padding;
+		padding: 0 48px;
 	}
 
 	@include mixins.desktop {
-		padding: 0 80px;
+		padding: 0 116px;
 	}
 }
 
@@ -97,5 +97,13 @@ $desktop-padding: 24px;
 
 	@include mixins.desktop {
 		padding-bottom: $desktop-padding;
+	}
+}
+
+@mixin headline-padding {
+	padding: 1rem 0 1.5rem 0;
+
+	@include mixins.tablet {
+		padding: 2.25rem 0 1.5rem 0;
 	}
 }
