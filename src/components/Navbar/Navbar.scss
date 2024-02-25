@@ -19,7 +19,12 @@
 	}
 
 	&__container {
-		display: flex;
+		width: 100%;
+
+		@include mixins.tablet {
+			width: auto;
+			display: flex;
+		}
 	}
 
 	&__logo {

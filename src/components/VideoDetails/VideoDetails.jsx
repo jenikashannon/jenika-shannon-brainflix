@@ -11,8 +11,6 @@ function VideoDetails({ video }) {
 	const { title, channel, description, views, likes, timestamp, comments } =
 		video;
 
-	const [commentList, setCommentList] = useState(comments);
-
 	return (
 		<section className='video-details'>
 			<h1 className='video-details__title'>{title}</h1>
@@ -32,13 +30,9 @@ function VideoDetails({ video }) {
 			</div>
 			<Divider />
 			<p className='video-details__description'>{description}</p>
-			<CommentForm
-				count={commentList.length}
-				commentList={commentList}
-				setCommentList={setCommentList}
-			/>
+			<CommentForm count={comments.length} commentList={comments} />
 			<Divider />
-			<CommentList commentList={commentList} />
+			<CommentList commentList={comments} />
 		</section>
 	);
 }

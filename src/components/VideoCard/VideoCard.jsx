@@ -1,9 +1,14 @@
 import "./VideoCard.scss";
 
-function VideoCard({ image, title, channel }) {
+function VideoCard({ image, title, channel, id, updateMainVideo }) {
 	return (
 		<article className='video-card'>
-			<div className='video-card__image-container'>
+			<div
+				className='video-card__image-container'
+				onClick={() => {
+					updateMainVideo(id);
+				}}
+			>
 				<img className='video-card__image' src={image} alt={`${title}`} />
 			</div>
 			<div className='video-card__text-container'>

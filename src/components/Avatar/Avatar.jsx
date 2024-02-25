@@ -1,8 +1,8 @@
 import "./Avatar.scss";
 
-const Avatar = ({ imageUrl }) => {
+const Avatar = ({ imageUrl, type }) => {
 	return (
-		<div className='avatar'>
+		<div className={`avatar avatar--${type}`}>
 			<img src={imageUrl} alt='' />
 		</div>
 	);

@@ -14,4 +14,18 @@
 		width: 40px;
 		height: 40px;
 	}
+
+	&--mobile {
+		@include mixins.tablet {
+			display: none;
+		}
+	}
+
+	&--tablet {
+		display: none;
+
+		@include mixins.tablet {
+			display: flex;
+		}
+	}
 }

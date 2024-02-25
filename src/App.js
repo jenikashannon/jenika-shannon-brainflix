@@ -7,21 +7,24 @@ import NextVideos from "./components/NextVideos/NextVideos";
 import { useState } from "react";
 
 function App() {
-	const [mainVideo, setMainVideo] = useState(
-		"84e96018-4022-434e-80bf-000ce4cd12b8"
-	);
+	const [mainVideo, setMainVideo] = useState(videoDetails[0]);
+
+	function updateMainVideo(videoId) {
+		setMainVideo(videoDetails.find((video) => video.id === videoId));
+	}
 
 	return (
 		<div className='App'>
 			<Navbar />
 			<VideoPlayer
-				video={videoDetails.find((video) => video.id === mainVideo)}
+				video={videoDetails.find((video) => video.id === mainVideo.id)}
 			/>
 			<div className='app-container'>
-				<VideoDetails
-					video={videoDetails.find((video) => video.id === mainVideo)}
+				<VideoDetails video={mainVideo} />
+				<NextVideos
+					mainVideoId={mainVideo.id}
+					updateMainVideo={updateMainVideo}
 				/>
-				<NextVideos mainVideo={mainVideo} />
 			</div>
 		</div>
 	);
