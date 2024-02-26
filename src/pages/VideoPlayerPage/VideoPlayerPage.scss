@@ -1,0 +1,7 @@
+@use "../../styles/partials/mixins";
+
+.video-player-page-container {
+	@include mixins.desktop {
+		display: flex;
+	}
+}

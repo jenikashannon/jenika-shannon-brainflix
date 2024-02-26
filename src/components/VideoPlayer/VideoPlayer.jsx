@@ -1,5 +1,4 @@
 import "./VideoPlayer.scss";
-import videoPreview from "../../assets/images/Upload-video-preview.jpg";
 
 function VideoPlayer({ video }) {
 	console.log(video.video);

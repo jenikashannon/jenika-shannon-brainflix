@@ -35,9 +35,3 @@
 	font-family: "Avenir";
 	color: colors.$bf-black;
 }
-
-.app-container {
-	@include mixins.desktop {
-		display: flex;
-	}
-}
