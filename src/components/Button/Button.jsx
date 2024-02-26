@@ -11,13 +11,24 @@ const Button = ({ type }) => {
 		buttonIcon = uploadIcon;
 	}
 
+	if (type === "publish") {
+		buttonText = "PUBLISH";
+		buttonIcon = uploadIcon;
+	}
+
 	if (type === "comment") {
 		buttonText = "COMMENT";
 		buttonIcon = commentIcon;
 	}
 
+	if (type === "cancel") {
+		buttonText = "CANCEL";
+	}
+
 	return (
-		<button className='button'>
+		<button
+			className={type === "cancel" ? "button button--secondary" : "button"}
+		>
 			<img className='button__icon' src={buttonIcon} alt='' />
 			{buttonText}
 			<></>
