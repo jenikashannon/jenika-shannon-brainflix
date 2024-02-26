@@ -1,4 +1,6 @@
 import thumbnail from "../../assets/images/Upload-video-preview.jpg";
+import FormInput from "../../components/FormInput/FormInput";
+import FormTextArea from "../../components/FormTextArea/FormTextArea";
 import Button from "../../components/Button/Button";
 
 function UploadPage() {
@@ -6,26 +8,41 @@ function UploadPage() {
 		<>
 			<h1 className='upload-page__title'>Upload Video</h1>
 			<form>
-				<label>VIDEO THUMBNAIL</label>
-				<img src={thumbnail} />
-				<label htmlFor='upload-title'>TITLE YOUR VIDEO</label>
+				<label className='upload-page__label'>VIDEO THUMBNAIL</label>
+				<img className='upload-page__thumbnail' src={thumbnail} />
+				<FormInput
+					label='TITLE YOUR VIDEO'
+					name='upload-title'
+					placeholder='Add a title to your video'
+				/>
+				<FormTextArea
+					label='ADD A VIDEO DESCRIPTION'
+					name='upload-description'
+					placeholder='Add a description to your video'
+				/>
+				{/* <label className='upload-page__label' htmlFor='upload-title'>
+					
+				</label>
 				<input
+					className='upload-page__title-input'
 					type='input'
 					name='upload-title'
 					id='upload-title'
 					placeholder='Add a title to your video'
-				></input>
-				<label htmlFor='upload-description'>ADD A VIDEO DESCRIPTION</label>
+				></input> */}
+				{/* <label className='upload-page__label' htmlFor='upload-description'>
+					ADD A VIDEO DESCRIPTION
+				</label>
 				<textarea
+					className='upload-page__description-input'
 					name='upload-description'
 					id='upload-description'
 					placeholder='Add a description to your video'
-				></textarea>
-				<div>
+				></textarea> */}
+				<div className='upload-page__button-container'>
 					<Button type='publish' />
 					<Button type='cancel' />
 				</div>
-				{/* buttons go in a container, need two cancel buttons to switch position in tablet */}
 			</form>
 		</>
 	);

@@ -1,0 +1,35 @@
+@use "../../styles/partials/colors";
+@use "../../styles/partials/padding";
+@use "../../styles/partials/mixins";
+@use "../../styles/partials/text-styles";
+
+.form-text-area {
+	&__label {
+		@extend .labels-and-buttons;
+		font-weight: 600;
+		margin-bottom: 0.25rem;
+		color: colors.$silver;
+	}
+
+	&__field {
+		@include padding.component-padding--bottom;
+		padding: 12px;
+		resize: none;
+		width: 100%;
+		height: 5rem;
+		min-height: 36px;
+		min-width: 240px;
+		max-width: 100%;
+		border: 1px solid colors.$mercury;
+		border-radius: 4px;
+
+		@include mixins.tablet {
+			padding: 12px;
+			height: 40px;
+		}
+
+		&::placeholder {
+			color: colors.$bf-black;
+		}
+	}
+}
