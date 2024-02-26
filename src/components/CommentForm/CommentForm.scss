@@ -32,44 +32,6 @@
 		flex-grow: 1;
 		justify-content: space-between;
 		align-items: flex-end;
-	}
-
-	&__input-container {
-		@include mixins.tablet {
-			@include padding.component-padding--right;
-			width: 100%;
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-		}
-	}
-
-	&__label {
-		@extend .labels-and-buttons;
-		font-weight: 600;
-		margin-bottom: 0.25rem;
-		color: colors.$silver;
-	}
-
-	&__field {
-		@include padding.component-padding--bottom;
-		padding: 12px;
-		resize: none;
-		width: 100%;
-		height: 5rem;
-		min-height: 36px;
-		min-width: 240px;
-		max-width: 100%;
-		border: 1px solid colors.$mercury;
-		border-radius: 4px;
-
-		@include mixins.tablet {
-			padding: 12px;
-			height: 40px;
-		}
-
-		&::placeholder {
-			color: colors.$bf-black;
-		}
+		gap: 24px;
 	}
 }

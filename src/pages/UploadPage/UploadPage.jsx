@@ -1,12 +1,16 @@
 import thumbnail from "../../assets/images/Upload-video-preview.jpg";
+import Divider from "../../components/Divider/Divider";
 import FormInput from "../../components/FormInput/FormInput";
 import FormTextArea from "../../components/FormTextArea/FormTextArea";
 import Button from "../../components/Button/Button";
 
+import "./UploadPage.scss";
+
 function UploadPage() {
 	return (
-		<>
+		<div className='upload-page'>
 			<h1 className='upload-page__title'>Upload Video</h1>
+			<Divider type='tablet' />
 			<form>
 				<label className='upload-page__label'>VIDEO THUMBNAIL</label>
 				<img className='upload-page__thumbnail' src={thumbnail} />
@@ -20,31 +24,14 @@ function UploadPage() {
 					name='upload-description'
 					placeholder='Add a description to your video'
 				/>
-				{/* <label className='upload-page__label' htmlFor='upload-title'>
-					
-				</label>
-				<input
-					className='upload-page__title-input'
-					type='input'
-					name='upload-title'
-					id='upload-title'
-					placeholder='Add a title to your video'
-				></input> */}
-				{/* <label className='upload-page__label' htmlFor='upload-description'>
-					ADD A VIDEO DESCRIPTION
-				</label>
-				<textarea
-					className='upload-page__description-input'
-					name='upload-description'
-					id='upload-description'
-					placeholder='Add a description to your video'
-				></textarea> */}
+				<Divider type='tablet' />
 				<div className='upload-page__button-container'>
+					<Button type='cancel--tablet' />
 					<Button type='publish' />
-					<Button type='cancel' />
+					<Button type='cancel--mobile' />
 				</div>
 			</form>
-		</>
+		</div>
 	);
 }
 

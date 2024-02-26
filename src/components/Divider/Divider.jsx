@@ -7,6 +7,9 @@ function Divider({ type }) {
 		case "mobile":
 			className = "divider divider--mobile";
 			break;
+		case "tablet":
+			className = "divider divider--tablet";
+			break;
 		case "vertical":
 			className = "divider divider--vertical";
 			break;

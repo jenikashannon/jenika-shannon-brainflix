@@ -19,12 +19,25 @@
 
 	@include mixins.tablet {
 		width: 150px;
-		margin-right: 1rem;
 	}
 
 	&--secondary {
 		background-color: colors.$white;
 		color: colors.$bf-blue;
+	}
+
+	&--mobile {
+		@include mixins.tablet {
+			display: none;
+		}
+	}
+
+	&--tablet {
+		display: none;
+
+		@include mixins.tablet {
+			display: flex;
+		}
 	}
 
 	&__icon {

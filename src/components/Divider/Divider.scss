@@ -12,6 +12,15 @@
 		}
 	}
 
+	&--tablet {
+		display: none;
+
+		@include mixins.tablet {
+			display: block;
+			margin-bottom: 24px;
+		}
+	}
+
 	&--vertical {
 		width: 1px;
 		height: 100%;

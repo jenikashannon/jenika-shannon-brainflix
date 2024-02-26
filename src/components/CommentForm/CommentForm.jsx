@@ -17,6 +17,7 @@ function CommentForm({ count, commentList, setCommentList }) {
 						label='JOIN THE CONVERSATION'
 						name='comment'
 						placeholder='Add a new comment'
+						type='comment'
 					/>
 					<Button type='comment' />
 				</form>

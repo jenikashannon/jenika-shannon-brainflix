@@ -4,6 +4,13 @@
 @use "../../styles/partials/text-styles";
 
 .form-text-area {
+	@include mixins.tablet {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
 	&__label {
 		@extend .labels-and-buttons;
 		font-weight: 600;
@@ -15,17 +22,21 @@
 		@include padding.component-padding--bottom;
 		padding: 12px;
 		resize: none;
-		width: 100%;
+		flex-grow: 1;
 		height: 5rem;
 		min-height: 36px;
 		min-width: 240px;
 		max-width: 100%;
 		border: 1px solid colors.$mercury;
 		border-radius: 4px;
+		margin-bottom: 1rem;
 
-		@include mixins.tablet {
-			padding: 12px;
-			height: 40px;
+		&--comment {
+			@include mixins.tablet {
+				padding: 12px;
+				height: 40px;
+				margin-bottom: 0;
+			}
 		}
 
 		&::placeholder {

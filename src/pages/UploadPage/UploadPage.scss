@@ -1,0 +1,36 @@
+@use "../../styles/partials/text-styles" as *;
+@use "../../styles/partials/colors";
+@use "../../styles/partials/padding";
+@use "../../styles/partials/mixins";
+
+.upload-page {
+	@include padding.section-padding;
+
+	&__title {
+		@extend .page-header;
+		@include padding.headline-padding;
+	}
+
+	&__label {
+		@extend .labels-and-buttons;
+		color: colors.$silver;
+		font-weight: 600;
+	}
+
+	&__thumbnail {
+		width: 100%;
+		margin-bottom: 0.5rem;
+		display: block;
+
+		@include mixins.tablet {
+			width: 50%;
+		}
+	}
+
+	&__button-container {
+		@include mixins.tablet {
+			display: flex;
+			justify-content: flex-end;
+		}
+	}
+}
