@@ -9,10 +9,10 @@ function CommentList({ commentList }) {
 
 	return commentList.map((comment) => {
 		return (
-			<>
+			<div key={comment.id}>
 				<Comment commentObj={comment} />
 				<Divider />
-			</>
+			</div>
 		);
 	});
 }

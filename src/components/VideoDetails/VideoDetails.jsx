@@ -5,7 +5,6 @@ import Divider from "../Divider/Divider";
 import NameAndDate from "../NameAndDate/NameAndDate";
 import CommentForm from "../CommentForm/CommentForm";
 import CommentList from "../CommentList/CommentList";
-import { useState } from "react";
 
 function VideoDetails({ video }) {
 	const { title, channel, description, views, likes, timestamp, comments } =

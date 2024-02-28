@@ -1,7 +1,6 @@
 import "./VideoPlayer.scss";
 
 function VideoPlayer({ video }) {
-	console.log(video.video);
 	return (
 		<div className='video-player-container'>
 			<video
