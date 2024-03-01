@@ -14,16 +14,16 @@ const NavBar = () => {
 					<img className='navbar__logo' src={logo} alt='BrainFlix logo'></img>
 				</Link>
 				<div className='navbar__container'>
-					<search className='navbar-search'>
+					<div className='navbar__search'>
 						<input
-							className='navbar-search__field'
+							className='navbar__search-field'
 							type='search'
 							id='videoSearch'
 							name='videoSearch'
 							placeholder='Search'
 						></input>
 						<Avatar imageUrl={userAvatar} type='mobile' />
-					</search>
+					</div>
 					<Link to='/upload'>
 						<Button type='upload'></Button>
 					</Link>
