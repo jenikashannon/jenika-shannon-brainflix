@@ -11,7 +11,7 @@ function CommentForm({ count, commentList, setCommentList }) {
 				{count === 1 ? `1 Comment` : `${count} Comments`}
 			</p>
 			<div className='comments__container'>
-				<Avatar imageUrl={userAvatar} />
+				<Avatar imageUrl={userAvatar} type='comment' />
 				<form className='comment-form'>
 					<FormTextArea
 						label='JOIN THE CONVERSATION'
