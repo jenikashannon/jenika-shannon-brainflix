@@ -1,6 +1,6 @@
-import "./VideoPlayer.scss";
+import "./VideoMedia.scss";
 
-function VideoPlayer({ video }) {
+function VideoMedia({ video }) {
 	return (
 		<div className='video-player-container'>
 			<video
@@ -13,4 +13,4 @@ function VideoPlayer({ video }) {
 	);
 }
 
-export default VideoPlayer;
+export default VideoMedia;
