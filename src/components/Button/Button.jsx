@@ -36,7 +36,7 @@ const Button = ({ type }) => {
 	}
 
 	return (
-		<button className={className}>
+		<button className={className} type={type === "publish" ? "submit" : ""}>
 			<img className='button__icon' src={buttonIcon} alt='' />
 			{buttonText}
 			<></>

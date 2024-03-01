@@ -3,15 +3,36 @@ import Divider from "../../components/Divider/Divider";
 import FormInput from "../../components/FormInput/FormInput";
 import FormTextArea from "../../components/FormTextArea/FormTextArea";
 import Button from "../../components/Button/Button";
-
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./UploadPage.scss";
 
 function UploadPage() {
+	const [isPublished, setIsPublished] = useState(false);
+	const navigate = useNavigate();
+
+	function handleSubmit(event) {
+		event.preventDefault();
+
+		// trigger success alert
+		setIsPublished(true);
+
+		// navigate to home page.
+		setTimeout(() => {
+			navigate("/");
+		}, 1000);
+	}
+
 	return (
 		<div className='upload-page'>
+			{isPublished ? ( // if upload successful, render alert
+				<div className='upload-page__alert'>
+					Upload successful! Taking you home.
+				</div>
+			) : null}
 			<h1 className='upload-page__title'>Upload Video</h1>
 			<Divider type='tablet' />
-			<form>
+			<form onSubmit={handleSubmit}>
 				<label className='upload-page__label'>VIDEO THUMBNAIL</label>
 				<img className='upload-page__thumbnail' src={thumbnail} />
 				<FormInput

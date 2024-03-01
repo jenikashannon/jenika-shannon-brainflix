@@ -5,6 +5,19 @@
 
 .upload-page {
 	@include padding.section-padding;
+	position: relative;
+
+	&__alert {
+		position: absolute;
+		background-color: colors.$bf-blue;
+		color: colors.$alabaster;
+		height: 30vh;
+		width: 90vw;
+		top: 35vh;
+		left: 5vw;
+		font-size: 5rem;
+		text-align: center;
+	}
 
 	&__title {
 		@extend .page-header;
