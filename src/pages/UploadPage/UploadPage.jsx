@@ -25,26 +25,27 @@ function UploadPage() {
 
 	return (
 		<div className='upload-page'>
-			{isPublished ? ( // if upload successful, render alert
-				<div className='upload-page__alert'>
-					Upload successful! Taking you home.
-				</div>
-			) : null}
 			<h1 className='upload-page__title'>Upload Video</h1>
 			<Divider type='tablet' />
 			<form onSubmit={handleSubmit}>
-				<label className='upload-page__label'>VIDEO THUMBNAIL</label>
-				<img className='upload-page__thumbnail' src={thumbnail} />
-				<FormInput
-					label='TITLE YOUR VIDEO'
-					name='upload-title'
-					placeholder='Add a title to your video'
-				/>
-				<FormTextArea
-					label='ADD A VIDEO DESCRIPTION'
-					name='upload-description'
-					placeholder='Add a description to your video'
-				/>
+				<div className='upload-page__container'>
+					<div className='upload-page__thumbnail-container'>
+						<label className='upload-page__label'>VIDEO THUMBNAIL</label>
+						<img className='upload-page__thumbnail' src={thumbnail} />
+					</div>
+					<div className='upload-page__input-container'>
+						<FormInput
+							label='TITLE YOUR VIDEO'
+							name='upload-title'
+							placeholder='Add a title to your video'
+						/>
+						<FormTextArea
+							label='ADD A VIDEO DESCRIPTION'
+							name='upload-description'
+							placeholder='Add a description to your video'
+						/>
+					</div>
+				</div>
 				<Divider type='tablet' />
 				<div className='upload-page__button-container'>
 					<Button type='cancel--tablet' />
@@ -52,6 +53,11 @@ function UploadPage() {
 					<Button type='cancel--mobile' />
 				</div>
 			</form>
+			{isPublished ? ( // if upload successful, render alert
+				<div className='upload-page__alert'>
+					Upload successful! Taking you home.
+				</div>
+			) : null}
 		</div>
 	);
 }

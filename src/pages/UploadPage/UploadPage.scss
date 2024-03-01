@@ -24,20 +24,42 @@
 		@include padding.headline-padding;
 	}
 
+	&__container {
+		@include mixins.desktop {
+			display: flex;
+			gap: 1rem;
+			padding-bottom: 1.5rem;
+			align-items: baseline;
+		}
+	}
+
 	&__label {
 		@extend .labels-and-buttons;
 		color: colors.$silver;
-		font-weight: 600;
 	}
 
 	&__thumbnail {
 		width: 100%;
-		margin-bottom: 0.5rem;
-		display: block;
+		margin-bottom: 1rem;
 
 		@include mixins.tablet {
 			width: 50%;
 		}
+
+		@include mixins.desktop {
+			width: 100%;
+			margin-bottom: 0;
+		}
+	}
+
+	&__thumbnail-container {
+		display: flex;
+		flex-direction: column;
+		flex-basis: 40%;
+	}
+
+	&__input-container {
+		flex-basis: 100%;
 	}
 
 	&__button-container {
