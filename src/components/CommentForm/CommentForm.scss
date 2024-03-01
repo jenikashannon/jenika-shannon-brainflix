@@ -12,6 +12,7 @@
 	&__container {
 		@include padding.component-padding--vertical;
 		display: flex;
+		gap: 1rem;
 
 		@include mixins.tablet {
 			align-items: flex-end;
@@ -19,19 +20,17 @@
 
 		@include mixins.desktop {
 			padding-left: 1.5rem;
+			padding-right: 1.5rem;
 		}
 	}
 }
 
 .comment-form {
-	@include padding.component-padding--left;
-
 	@include mixins.tablet {
 		display: flex;
-		flex-shrink: 0;
 		flex-grow: 1;
 		justify-content: space-between;
 		align-items: flex-end;
-		gap: 24px;
+		gap: 1rem;
 	}
 }
