@@ -10,29 +10,41 @@ import axios from "axios";
 function VideoPlayerPage() {
 	const [mainVideo, setMainVideo] = useState(null);
 	const [errorState, setErrorState] = useState(false);
+	const [commentAdded, setCommentAdded] = useState("waiting");
+
 	let { videoId } = useParams();
 	const navigate = useNavigate();
 
 	// if no video id, load first video
 	videoId = videoId ? videoId : "84e96018-4022-434e-80bf-000ce4cd12b8";
 
-	useEffect(() => {
-		//scroll to top of page
-		window.scrollTo(0, 0);
-
-		async function getMainVideo() {
-			try {
-				const result = await axios.get(
-					`${baseUrl}/videos/${videoId}?api_key=${apiKey}`
-				);
-				setMainVideo(result.data);
-			} catch (error) {
-				setErrorState(true);
-			}
+	async function getMainVideo() {
+		try {
+			const result = await axios.get(
+				`${baseUrl}/videos/${videoId}?api_key=${apiKey}`
+			);
+			setMainVideo(result.data);
+		} catch (error) {
+			setErrorState(true);
 		}
+	}
 
+	async function addComment(comment) {
+		try {
+			await axios.post(
+				`${baseUrl}/videos/${videoId}/comments?api_key=${apiKey}`,
+				comment
+			);
+			setCommentAdded("done");
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	useEffect(() => {
 		getMainVideo();
-	}, [videoId]);
+		setCommentAdded("waiting");
+	}, [videoId, commentAdded]);
 
 	if (errorState) {
 		setTimeout(() => {
@@ -47,7 +59,7 @@ function VideoPlayerPage() {
 		<>
 			<VideoMedia video={mainVideo} />
 			<div className='video-player-page-container'>
-				<VideoDetails video={mainVideo} />
+				<VideoDetails video={mainVideo} addComment={addComment} />
 				<NextVideos mainVideoId={mainVideo.id} />
 			</div>
 		</>

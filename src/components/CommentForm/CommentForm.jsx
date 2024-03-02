@@ -4,7 +4,20 @@ import Button from "../Button/Button";
 import FormTextArea from "../FormTextArea/FormTextArea";
 import userAvatar from "../../assets/images/Mohan-muruge.jpg";
 
-function CommentForm({ count, commentList, setCommentList }) {
+function CommentForm({ count, addComment }) {
+	function handleSubmit(event) {
+		event.preventDefault();
+
+		const comment = {
+			name: "Unknown User",
+			comment: event.target.comment.value,
+		};
+
+		event.target.comment.value = "";
+
+		addComment(comment);
+	}
+
 	return (
 		<article className='comments'>
 			<p className='comments__count'>
@@ -12,7 +25,7 @@ function CommentForm({ count, commentList, setCommentList }) {
 			</p>
 			<div className='comments__container'>
 				<Avatar imageUrl={userAvatar} type='comment' />
-				<form className='comment-form'>
+				<form className='comment-form' onSubmit={handleSubmit}>
 					<FormTextArea
 						label='JOIN THE CONVERSATION'
 						name='comment'

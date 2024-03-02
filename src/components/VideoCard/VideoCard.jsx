@@ -5,7 +5,13 @@ function VideoCard({ image, title, channel, id }) {
 	return (
 		<article className='video-card'>
 			<div className='video-card__image-container'>
-				<Link to={`/video/${id}`}>
+				<Link
+					to={`/video/${id}`}
+					onClick={() => {
+						//scroll to top of page
+						window.scrollTo(0, 0);
+					}}
+				>
 					<img className='video-card__image' src={image} alt={`${title}`} />
 				</Link>
 			</div>

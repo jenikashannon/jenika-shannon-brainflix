@@ -55,7 +55,8 @@ function UploadPage() {
 			</form>
 			{isPublished ? ( // if upload successful, render alert
 				<div className='upload-page__alert'>
-					Upload successful! Taking you home.
+					Upload successful! <br />
+					Taking you home.
 				</div>
 			) : null}
 		</div>
