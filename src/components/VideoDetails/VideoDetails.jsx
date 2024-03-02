@@ -6,7 +6,7 @@ import NameAndDate from "../NameAndDate/NameAndDate";
 import CommentForm from "../CommentForm/CommentForm";
 import CommentList from "../CommentList/CommentList";
 
-function VideoDetails({ video, addComment }) {
+function VideoDetails({ video, addComment, deleteComment }) {
 	const { title, channel, description, views, likes, timestamp, comments } =
 		video;
 
@@ -35,7 +35,7 @@ function VideoDetails({ video, addComment }) {
 				addComment={addComment}
 			/>
 			<Divider />
-			<CommentList commentList={comments} />
+			<CommentList commentList={comments} deleteComment={deleteComment} />
 		</section>
 	);
 }

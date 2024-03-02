@@ -10,7 +10,7 @@ import axios from "axios";
 function VideoPlayerPage() {
 	const [mainVideo, setMainVideo] = useState(null);
 	const [errorState, setErrorState] = useState(false);
-	const [commentAdded, setCommentAdded] = useState("waiting");
+	const [commentsChanged, setCommentsChanged] = useState("waiting");
 
 	let { videoId } = useParams();
 	const navigate = useNavigate();
@@ -35,7 +35,18 @@ function VideoPlayerPage() {
 				`${baseUrl}/videos/${videoId}/comments?api_key=${apiKey}`,
 				comment
 			);
-			setCommentAdded("done");
+			setCommentsChanged("done");
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	async function deleteComment(commentId) {
+		try {
+			await axios.delete(
+				`${baseUrl}/videos/${videoId}/comments/${commentId}?api_key=${apiKey}`
+			);
+			setCommentsChanged("done");
 		} catch (error) {
 			console.log(error);
 		}
@@ -43,8 +54,8 @@ function VideoPlayerPage() {
 
 	useEffect(() => {
 		getMainVideo();
-		setCommentAdded("waiting");
-	}, [videoId, commentAdded]);
+		setCommentsChanged("waiting");
+	}, [videoId, commentsChanged]);
 
 	if (errorState) {
 		setTimeout(() => {
@@ -59,7 +70,11 @@ function VideoPlayerPage() {
 		<>
 			<VideoMedia video={mainVideo} />
 			<div className='video-player-page-container'>
-				<VideoDetails video={mainVideo} addComment={addComment} />
+				<VideoDetails
+					video={mainVideo}
+					addComment={addComment}
+					deleteComment={deleteComment}
+				/>
 				<NextVideos mainVideoId={mainVideo.id} />
 			</div>
 		</>

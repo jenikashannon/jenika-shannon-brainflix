@@ -14,9 +14,18 @@
 	&__text-container {
 		@include padding.component-padding--left;
 		width: 100%;
+		position: relative;
 	}
 
 	&__content {
 		@extend .body-copy;
+	}
+
+	&__button {
+		&--delete {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+		}
 	}
 }
