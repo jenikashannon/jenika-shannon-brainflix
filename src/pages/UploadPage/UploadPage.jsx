@@ -5,22 +5,42 @@ import FormTextArea from "../../components/FormTextArea/FormTextArea";
 import Button from "../../components/Button/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import uniqid from "uniqid";
+import axios from "axios";
+import { apiKey, baseUrl } from "../../consts";
 import "./UploadPage.scss";
 
 function UploadPage() {
 	const [isPublished, setIsPublished] = useState(false);
 	const navigate = useNavigate();
 
+	async function postVideo(video) {
+		try {
+			await axios.post(`${baseUrl}/videos`, video);
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
 	function handleSubmit(event) {
 		event.preventDefault();
 
-		// trigger success alert
-		setIsPublished(true);
+		const newVideo = {
+			id: uniqid(),
+			title: event.target.uploadTitle.value,
+			description: event.target.uploadDescription.value,
+			image: "http://localhost:1700/images/upload-video-preview",
+		};
 
-		// navigate to home page.
-		setTimeout(() => {
-			navigate("/");
-		}, 1000);
+		postVideo(newVideo);
+
+		// // trigger success alert
+		// setIsPublished(true);
+
+		// // navigate to home page.
+		// setTimeout(() => {
+		// 	navigate("/");
+		// }, 1000);
 	}
 
 	return (
@@ -36,12 +56,12 @@ function UploadPage() {
 					<div className='upload-page__input-container'>
 						<FormInput
 							label='TITLE YOUR VIDEO'
-							name='upload-title'
+							name='uploadTitle'
 							placeholder='Add a title to your video'
 						/>
 						<FormTextArea
 							label='ADD A VIDEO DESCRIPTION'
-							name='upload-description'
+							name='uploadDescription'
 							placeholder='Add a description to your video'
 						/>
 					</div>
