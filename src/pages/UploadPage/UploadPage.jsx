@@ -39,13 +39,13 @@ function UploadPage() {
 
 		postVideo(newVideo);
 
-		// // trigger success alert
-		// setIsPublished(true);
+		// trigger success alert
+		setIsPublished(true);
 
-		// // navigate to home page.
-		// setTimeout(() => {
-		// 	navigate("/");
-		// }, 1000);
+		// navigate to home page.
+		setTimeout(() => {
+			navigate("/");
+		}, 1000);
 
 		// clear input fields
 		event.target.uploadTitle.value = "";
