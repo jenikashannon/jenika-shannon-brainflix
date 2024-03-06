@@ -1,12 +1,13 @@
 import "./Navbar.scss";
 import logo from "../../assets/logos/BrainFlix-logo.svg";
 import Avatar from "../Avatar/Avatar";
-import userAvatar from "../../assets/images/Mohan-muruge.jpg";
 import Button from "../Button/Button";
 import Divider from "../Divider/Divider";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
+	const userAvatar = "http://localhost:1700/images/Mohan-muruge.jpg";
+
 	return (
 		<>
 			<header className='navbar'>

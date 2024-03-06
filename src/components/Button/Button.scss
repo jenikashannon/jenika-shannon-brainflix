@@ -16,6 +16,7 @@
 	border: none;
 	border-radius: 4px;
 	padding: 16px;
+	cursor: pointer;
 
 	@include mixins.tablet {
 		width: 150px;

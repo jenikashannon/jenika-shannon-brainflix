@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 function VideoPlayerPage() {
+	const [videoList, setVideoList] = useState(null);
 	const [mainVideo, setMainVideo] = useState(null);
 	const [errorState, setErrorState] = useState(false);
 	const [commentsChanged, setCommentsChanged] = useState("waiting");
@@ -15,8 +16,14 @@ function VideoPlayerPage() {
 	let { videoId } = useParams();
 	const navigate = useNavigate();
 
-	// if no video id, load first video
-	videoId = videoId ? videoId : "84e96018-4022-434e-80bf-000ce4cd12b8";
+	async function getVideos() {
+		try {
+			const result = await axios.get(`${baseUrl}/videos?api_key=${apiKey}`);
+			setVideoList(result.data);
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
 	async function getMainVideo() {
 		try {
@@ -53,9 +60,18 @@ function VideoPlayerPage() {
 	}
 
 	useEffect(() => {
+		getVideos();
+	}, []);
+
+	useEffect(() => {
+		// if no video id, set as first video
+		if (!videoId && videoList) {
+			videoId = videoId || videoList[0].id;
+		}
+
 		getMainVideo();
 		setCommentsChanged("waiting");
-	}, [videoId, commentsChanged]);
+	}, [videoList, videoId, commentsChanged]);
 
 	if (errorState) {
 		setTimeout(() => {
@@ -66,7 +82,11 @@ function VideoPlayerPage() {
 		return <div>Oops, that video doesn't exit. Taking you home.</div>;
 	}
 
-	return mainVideo ? (
+	if (!mainVideo) {
+		return <div>Loading...</div>;
+	}
+
+	return (
 		<>
 			<VideoMedia video={mainVideo} />
 			<div className='video-player-page-container'>
@@ -75,11 +95,9 @@ function VideoPlayerPage() {
 					addComment={addComment}
 					deleteComment={deleteComment}
 				/>
-				<NextVideos mainVideoId={mainVideo.id} />
+				<NextVideos mainVideoId={mainVideo.id} videoList={videoList} />
 			</div>
 		</>
-	) : (
-		<div>Loading...</div>
 	);
 }
 

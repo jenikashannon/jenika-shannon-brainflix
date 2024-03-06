@@ -5,7 +5,6 @@ import FormTextArea from "../../components/FormTextArea/FormTextArea";
 import Button from "../../components/Button/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import uniqid from "uniqid";
 import axios from "axios";
 import { apiKey, baseUrl } from "../../consts";
 import "./UploadPage.scss";
@@ -26,10 +25,16 @@ function UploadPage() {
 		event.preventDefault();
 
 		const newVideo = {
-			id: uniqid(),
 			title: event.target.uploadTitle.value,
 			description: event.target.uploadDescription.value,
 			image: "http://localhost:1700/images/upload-video-preview",
+			channel: "A very cool channel",
+			views: 0,
+			likes: 0,
+			duration: "2:17",
+			video: "import from public",
+			timestamp: new Date().getTime(),
+			comments: [],
 		};
 
 		postVideo(newVideo);
@@ -41,6 +46,14 @@ function UploadPage() {
 		// setTimeout(() => {
 		// 	navigate("/");
 		// }, 1000);
+
+		// clear input fields
+		event.target.uploadTitle.value = "";
+		event.target.uploadDescription.value = "";
+	}
+
+	function handleCancel(event) {
+		navigate("/");
 	}
 
 	return (
@@ -68,9 +81,9 @@ function UploadPage() {
 				</div>
 				<Divider type='tablet' />
 				<div className='upload-page__button-container'>
-					<Button type='cancel--tablet' />
+					<Button type='cancel--tablet' handleCancel={handleCancel} />
 					<Button type='publish' />
-					<Button type='cancel--mobile' />
+					<Button type='cancel--mobile' handleCancel={handleCancel} />
 				</div>
 			</form>
 			{isPublished ? ( // if upload successful, render alert
