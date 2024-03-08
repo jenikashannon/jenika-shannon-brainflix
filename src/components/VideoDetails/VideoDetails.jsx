@@ -6,9 +6,13 @@ import NameAndDate from "../NameAndDate/NameAndDate";
 import CommentForm from "../CommentForm/CommentForm";
 import CommentList from "../CommentList/CommentList";
 
-function VideoDetails({ video, addComment, deleteComment }) {
-	const { title, channel, description, views, likes, timestamp, comments } =
+function VideoDetails({ video, addComment, deleteComment, addLike }) {
+	const { id, title, channel, description, views, likes, timestamp, comments } =
 		video;
+
+	function handleClick() {
+		addLike();
+	}
 
 	return (
 		<section className='video-details'>
@@ -22,7 +26,9 @@ function VideoDetails({ video, addComment, deleteComment }) {
 						<p className='video-details__views-count'>{views}</p>
 					</div>
 					<div className='video-details__likes'>
-						<img className='video-details__likes-icon' src={likesIcon} />
+						<button className='video-details__likes-button' onClick={addLike}>
+							<img className='video-details__likes-icon' src={likesIcon} />
+						</button>
 						<p className='video-details__likes-count'>{likes}</p>
 					</div>
 				</div>

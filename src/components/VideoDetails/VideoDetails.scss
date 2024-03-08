@@ -71,6 +71,12 @@
 		color: colors.$silver;
 	}
 
+	&__likes-button {
+		background-color: colors.$white;
+		border: none;
+		cursor: pointer;
+	}
+
 	&__description {
 		@include padding.component-padding--vertical;
 		@extend .body-copy;

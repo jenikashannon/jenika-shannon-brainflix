@@ -11,7 +11,7 @@ function VideoPlayerPage() {
 	const [videoList, setVideoList] = useState(null);
 	const [mainVideo, setMainVideo] = useState(null);
 	const [errorState, setErrorState] = useState(false);
-	const [commentsChanged, setCommentsChanged] = useState("waiting");
+	const [detailssChanged, setDetailsChanged] = useState("waiting");
 
 	let { videoId } = useParams();
 	const navigate = useNavigate();
@@ -42,7 +42,7 @@ function VideoPlayerPage() {
 				`${baseUrl}/videos/${videoId}/comments?api_key=${apiKey}`,
 				comment
 			);
-			setCommentsChanged("done");
+			setDetailsChanged("done");
 		} catch (error) {
 			console.log(error);
 		}
@@ -53,7 +53,16 @@ function VideoPlayerPage() {
 			await axios.delete(
 				`${baseUrl}/videos/${videoId}/comments/${commentId}?api_key=${apiKey}`
 			);
-			setCommentsChanged("done");
+			setDetailsChanged("done");
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	async function addLike() {
+		try {
+			const response = await axios.put(`${baseUrl}/videos/${videoId}/likes`);
+			setDetailsChanged("done");
 		} catch (error) {
 			console.log(error);
 		}
@@ -65,8 +74,8 @@ function VideoPlayerPage() {
 
 	useEffect(() => {
 		getMainVideo();
-		setCommentsChanged("waiting");
-	}, [videoList, videoId, commentsChanged]);
+		setDetailsChanged("waiting");
+	}, [videoList, videoId, detailssChanged]);
 
 	if (errorState) {
 		setTimeout(() => {
@@ -89,6 +98,7 @@ function VideoPlayerPage() {
 					video={mainVideo}
 					addComment={addComment}
 					deleteComment={deleteComment}
+					addLike={addLike}
 				/>
 				<NextVideos mainVideoId={mainVideo.id} videoList={videoList} />
 			</div>
