@@ -1,0 +1,15 @@
+@use "../../styles/partials/colors";
+@use "../../styles/partials/padding";
+@use "../../styles/partials/mixins";
+@use "../../styles/partials/text-styles";
+
+.form-file {
+	display: flex;
+	flex-direction: column;
+
+	&__label {
+		@extend .labels-and-buttons;
+		margin-bottom: 0.25rem;
+		color: colors.$silver;
+	}
+}

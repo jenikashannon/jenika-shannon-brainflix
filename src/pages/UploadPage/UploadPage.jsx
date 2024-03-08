@@ -2,16 +2,32 @@ import thumbnail from "../../assets/images/Upload-video-preview.jpg";
 import Divider from "../../components/Divider/Divider";
 import FormInput from "../../components/FormInput/FormInput";
 import FormTextArea from "../../components/FormTextArea/FormTextArea";
+import FormFile from "../../components/FormFile/FormFile";
 import Button from "../../components/Button/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { apiKey, baseUrl } from "../../consts";
+import { apiKey, baseUrl, publicPath } from "../../consts";
+
 import "./UploadPage.scss";
 
 function UploadPage() {
 	const [isPublished, setIsPublished] = useState(false);
+	const [thumbnailId, setThumbnailId] = useState("");
+	const [newVideo, setNewVideo] = useState(null);
+
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (thumbnailId) {
+			const videoWithImage = {
+				...newVideo,
+				image: `${publicPath}/${thumbnailId}`,
+			};
+
+			postVideo(videoWithImage);
+		}
+	}, [thumbnailId]);
 
 	async function postVideo(video) {
 		try {
@@ -21,13 +37,33 @@ function UploadPage() {
 		}
 	}
 
+	async function saveImage(file) {
+		const formData = new FormData();
+
+		formData.append("files", file);
+
+		try {
+			const response = await axios.post(
+				`${baseUrl}/videos/thumbnail`,
+				formData,
+				{ headers: { "Content-Type": "multipart/form-data" } }
+			);
+			setThumbnailId(response.data);
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
 	function handleSubmit(event) {
 		event.preventDefault();
 
-		const newVideo = {
+		const file = event.target.uploadImage.files[0];
+		saveImage(file);
+
+		setNewVideo({
 			title: event.target.uploadTitle.value,
 			description: event.target.uploadDescription.value,
-			image: "http://localhost:1700/images/upload-video-preview",
+			image: "",
 			channel: "A very cool channel",
 			views: 0,
 			likes: 0,
@@ -35,9 +71,7 @@ function UploadPage() {
 			video: "import from public",
 			timestamp: new Date().getTime(),
 			comments: [],
-		};
-
-		postVideo(newVideo);
+		});
 
 		// trigger success alert
 		setIsPublished(true);
@@ -50,6 +84,7 @@ function UploadPage() {
 		// clear input fields
 		event.target.uploadTitle.value = "";
 		event.target.uploadDescription.value = "";
+		event.target.uploadImage.value = "";
 	}
 
 	function handleCancel(event) {
@@ -77,6 +112,7 @@ function UploadPage() {
 							name='uploadDescription'
 							placeholder='Add a description to your video'
 						/>
+						<FormFile />
 					</div>
 				</div>
 				<Divider type='tablet' />

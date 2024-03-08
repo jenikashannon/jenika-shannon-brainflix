@@ -64,11 +64,6 @@ function VideoPlayerPage() {
 	}, []);
 
 	useEffect(() => {
-		// if no video id, set as first video
-		if (!videoId && videoList) {
-			videoId = videoId || videoList[0].id;
-		}
-
 		getMainVideo();
 		setCommentsChanged("waiting");
 	}, [videoList, videoId, commentsChanged]);
