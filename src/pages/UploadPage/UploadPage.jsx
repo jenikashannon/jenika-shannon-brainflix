@@ -16,10 +16,10 @@ let videoTemplate;
 let file;
 
 function UploadPage() {
+	const [isLoading, setIsLoading] = useState(false);
 	const [isPublished, setIsPublished] = useState(false);
 	const [thumbnailId, setThumbnailId] = useState("");
 	const [newVideo, setNewVideo] = useState(null);
-	const [isLoading, setIsLoading] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -37,6 +37,15 @@ function UploadPage() {
 	useEffect(() => {
 		if (newVideo) {
 			postVideo(newVideo);
+
+			// trigger success alert
+			setIsLoading(false);
+			setIsPublished(true);
+
+			// navigate to home page
+			setTimeout(() => {
+				navigate("/");
+			}, 1000);
 		}
 	}, [newVideo]);
 
@@ -90,17 +99,14 @@ function UploadPage() {
 		if (file) {
 			saveImage(file);
 		} else {
+			// comment out to force loading state
 			setNewVideo(videoTemplate);
+
+			// uncomment to force loading state
+			// setTimeout(() => {
+			// 	setNewVideo(videoTemplate);
+			// }, 5000);
 		}
-
-		// trigger success alert
-		// setIsLoading(false);
-		// setIsPublished(true);
-
-		// navigate to home page.
-		// setTimeout(() => {
-		// 	navigate("/");
-		// }, 1000);
 
 		// clear input fields
 		event.target.uploadTitle.value = "";
@@ -113,6 +119,7 @@ function UploadPage() {
 	}
 
 	if (isLoading) {
+		console.log("in here");
 		return <Loading type='upload' />;
 	}
 
