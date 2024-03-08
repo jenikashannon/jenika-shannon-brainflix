@@ -10,7 +10,8 @@ function VideoDetails({ video, addComment, deleteComment, addLike }) {
 	const { id, title, channel, description, views, likes, timestamp, comments } =
 		video;
 
-	function handleClick() {
+	function handleClick(event) {
+		event.preventDefault();
 		addLike();
 	}
 

@@ -75,7 +75,7 @@ function VideoPlayerPage() {
 
 	useEffect(() => {
 		getMainVideo();
-		// setDetailsChanged(false);
+		setDetailsChanged(false);
 	}, [videoList, videoId, detailsChanged]);
 
 	if (errorState) {
@@ -87,7 +87,7 @@ function VideoPlayerPage() {
 		return <div>Oops, that video doesn't exit. Taking you home.</div>;
 	}
 
-	if (!mainVideo || detailsChanged) {
+	if (!videoList || !mainVideo || detailsChanged) {
 		return <Loading />;
 	}
 
