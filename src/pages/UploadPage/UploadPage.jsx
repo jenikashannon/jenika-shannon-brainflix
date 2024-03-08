@@ -66,6 +66,12 @@ function UploadPage() {
 		} catch (error) {}
 	}
 
+	async function deleteImage() {
+		try {
+			await axios.patch(`${baseUrl}/videos/thumbnail`, { file: thumbnail });
+		} catch (error) {}
+	}
+
 	function handleSubmit(event) {
 		event.preventDefault();
 		setIsLoading(true);
@@ -138,6 +144,7 @@ function UploadPage() {
 							thumbnail={thumbnail}
 							setThumbnail={setThumbnail}
 							saveImage={saveImage}
+							deleteImage={deleteImage}
 							thumbnailDefault={thumbnailDefault}
 						/>
 					</div>

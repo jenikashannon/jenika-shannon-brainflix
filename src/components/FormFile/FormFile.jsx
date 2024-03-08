@@ -1,10 +1,30 @@
 import "./FormFile.scss";
 
-function FormFile({ thumbnail, setThumbnail, saveImage, thumbnailDefault }) {
+let file;
+
+function FormFile({
+	thumbnail,
+	setThumbnail,
+	saveImage,
+	deleteImage,
+	thumbnailDefault,
+}) {
 	function handleImageChange(event) {
 		event.preventDefault();
-		const file = event.target.files[0];
 
+		// incoming image from form
+		const newFile = event.target.files[0];
+
+		// delete old image, if one was saved prior
+		if (file) {
+			deleteImage();
+		}
+
+		// set incoming image as file to save
+		file = newFile;
+
+		// if there is an incoming file, save it,
+		// otherwise use default thumbnail
 		if (file) {
 			saveImage(file);
 		} else {
