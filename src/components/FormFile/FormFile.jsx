@@ -1,10 +1,15 @@
 import "./FormFile.scss";
 
-function FormFile({ thumbnail, setThumbnail, saveImage }) {
+function FormFile({ thumbnail, setThumbnail, saveImage, thumbnailDefault }) {
 	function handleImageChange(event) {
 		event.preventDefault();
+		const file = event.target.files[0];
 
-		saveImage(event.target.files[0]);
+		if (file) {
+			saveImage(file);
+		} else {
+			setThumbnail(thumbnailDefault);
+		}
 	}
 
 	return (

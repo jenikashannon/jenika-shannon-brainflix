@@ -1,7 +1,7 @@
-import Divider from "../../components/Divider/Divider";
 import FormInput from "../../components/FormInput/FormInput";
 import FormTextArea from "../../components/FormTextArea/FormTextArea";
 import FormFile from "../../components/FormFile/FormFile";
+import Divider from "../../components/Divider/Divider";
 import Button from "../../components/Button/Button";
 import Loading from "../../components/Loading/Loading";
 import { useState, useEffect } from "react";
@@ -11,34 +11,22 @@ import { apiKey, baseUrl, publicPath } from "../../consts";
 
 import "./UploadPage.scss";
 
-let videoTemplate;
-let file;
-
 function UploadPage() {
+	const thumbnailDefault =
+		"http://localhost:1700/images/upload-video-preview.jpg";
+
 	const [isLoading, setIsLoading] = useState(false);
-	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [isPublished, setIsPublished] = useState(false);
-	const [thumbnail, setThumbnail] = useState("");
+	const [thumbnail, setThumbnail] = useState(thumbnailDefault);
 	const [thumbnailId, setThumbnailId] = useState("");
 	const [newVideo, setNewVideo] = useState(null);
 
 	const navigate = useNavigate();
-	const thumbnailDefault =
-		"http://localhost:1700/images/upload-video-preview.jpg";
 
 	useEffect(() => {
 		if (thumbnailId) {
 			const imagePath = `${publicPath}/${thumbnailId}`;
 			setThumbnail(imagePath);
-
-			if (isSubmitted) {
-				const videoWithImage = {
-					...videoTemplate,
-					image: imagePath,
-				};
-
-				setNewVideo(videoWithImage);
-			}
 		}
 	}, [thumbnailId]);
 
@@ -81,17 +69,14 @@ function UploadPage() {
 	function handleSubmit(event) {
 		event.preventDefault();
 		setIsLoading(true);
-		setIsSubmitted(true);
 
 		const title = event.target.uploadTitle.value;
 		const description = event.target.uploadDescription.value;
 
-		file = event.target.uploadImage.files[0];
-
-		videoTemplate = {
+		const videoTemplate = {
 			title: title || "(No Title)",
 			description: description || "(No Description)",
-			image: thumbnailDefault,
+			image: thumbnail,
 			channel: "A very cool channel",
 			views: "0",
 			likes: "0",
@@ -101,17 +86,13 @@ function UploadPage() {
 			comments: [],
 		};
 
-		if (file) {
-			saveImage(file);
-		} else {
-			// comment out to force loading state
-			setNewVideo(videoTemplate);
+		// comment out to force loading state
+		setNewVideo(videoTemplate);
 
-			// uncomment to force loading state
-			// setTimeout(() => {
-			// 	setNewVideo(videoTemplate);
-			// }, 5000);
-		}
+		// uncomment to force loading state
+		// setTimeout(() => {
+		// 	setNewVideo(videoTemplate);
+		// }, 5000);
 
 		// clear input fields
 		event.target.uploadTitle.value = "";
@@ -157,6 +138,7 @@ function UploadPage() {
 							thumbnail={thumbnail}
 							setThumbnail={setThumbnail}
 							saveImage={saveImage}
+							thumbnailDefault={thumbnailDefault}
 						/>
 					</div>
 				</div>
