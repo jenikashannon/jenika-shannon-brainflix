@@ -71,8 +71,8 @@ function UploadPage() {
 		file = event.target.uploadImage.files[0];
 
 		videoTemplate = {
-			title: title,
-			description: description,
+			title: title || "(No Title)",
+			description: description || "(No Description)",
 			image: "http://localhost:1700/images/upload-video-preview.jpg",
 			channel: "A very cool channel",
 			views: "0",
@@ -122,11 +122,13 @@ function UploadPage() {
 							label='TITLE YOUR VIDEO'
 							name='uploadTitle'
 							placeholder='Add a title to your video'
+							value='My Video'
 						/>
 						<FormTextArea
 							label='ADD A VIDEO DESCRIPTION'
 							name='uploadDescription'
 							placeholder='Add a description to your video'
+							value='My description'
 						/>
 						<FormFile />
 					</div>
