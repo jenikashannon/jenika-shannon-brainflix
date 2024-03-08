@@ -1,4 +1,3 @@
-import thumbnail from "../../assets/images/Upload-video-preview.jpg";
 import Divider from "../../components/Divider/Divider";
 import FormInput from "../../components/FormInput/FormInput";
 import FormTextArea from "../../components/FormTextArea/FormTextArea";
@@ -17,20 +16,29 @@ let file;
 
 function UploadPage() {
 	const [isLoading, setIsLoading] = useState(false);
+	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [isPublished, setIsPublished] = useState(false);
+	const [thumbnail, setThumbnail] = useState("");
 	const [thumbnailId, setThumbnailId] = useState("");
 	const [newVideo, setNewVideo] = useState(null);
 
 	const navigate = useNavigate();
+	const thumbnailDefault =
+		"http://localhost:1700/images/upload-video-preview.jpg";
 
 	useEffect(() => {
 		if (thumbnailId) {
-			const videoWithImage = {
-				...videoTemplate,
-				image: `${publicPath}/${thumbnailId}`,
-			};
+			const imagePath = `${publicPath}/${thumbnailId}`;
+			setThumbnail(imagePath);
 
-			setNewVideo(videoWithImage);
+			if (isSubmitted) {
+				const videoWithImage = {
+					...videoTemplate,
+					image: imagePath,
+				};
+
+				setNewVideo(videoWithImage);
+			}
 		}
 	}, [thumbnailId]);
 
@@ -73,6 +81,7 @@ function UploadPage() {
 	function handleSubmit(event) {
 		event.preventDefault();
 		setIsLoading(true);
+		setIsSubmitted(true);
 
 		const title = event.target.uploadTitle.value;
 		const description = event.target.uploadDescription.value;
@@ -82,7 +91,7 @@ function UploadPage() {
 		videoTemplate = {
 			title: title || "(No Title)",
 			description: description || "(No Description)",
-			image: "http://localhost:1700/images/upload-video-preview.jpg",
+			image: thumbnailDefault,
 			channel: "A very cool channel",
 			views: "0",
 			likes: "0",
@@ -126,7 +135,10 @@ function UploadPage() {
 				<div className='upload-page__container'>
 					<div className='upload-page__thumbnail-container'>
 						<label className='upload-page__label'>VIDEO THUMBNAIL</label>
-						<img className='upload-page__thumbnail' src={thumbnail} />
+						<img
+							className='upload-page__thumbnail'
+							src={thumbnail || thumbnailDefault}
+						/>
 					</div>
 					<div className='upload-page__input-container'>
 						<FormInput
@@ -141,7 +153,11 @@ function UploadPage() {
 							placeholder='Add a description to your video'
 							value='My description'
 						/>
-						<FormFile />
+						<FormFile
+							thumbnail={thumbnail}
+							setThumbnail={setThumbnail}
+							saveImage={saveImage}
+						/>
 					</div>
 				</div>
 				<Divider type='tablet' />
