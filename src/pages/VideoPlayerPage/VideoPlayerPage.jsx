@@ -2,6 +2,7 @@ import "./VideoPlayerPage.scss";
 import VideoMedia from "../../components/VideoMedia/VideoMedia";
 import VideoDetails from "../../components/VideoDetails/VideoDetails";
 import NextVideos from "../../components/NextVideos/NextVideos";
+import Loading from "../../components/Loading/Loading";
 import { apiKey, baseUrl } from "../../consts";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -11,7 +12,7 @@ function VideoPlayerPage() {
 	const [videoList, setVideoList] = useState(null);
 	const [mainVideo, setMainVideo] = useState(null);
 	const [errorState, setErrorState] = useState(false);
-	const [detailssChanged, setDetailsChanged] = useState("waiting");
+	const [detailsChanged, setDetailsChanged] = useState(false);
 
 	let { videoId } = useParams();
 	const navigate = useNavigate();
@@ -42,7 +43,7 @@ function VideoPlayerPage() {
 				`${baseUrl}/videos/${videoId}/comments?api_key=${apiKey}`,
 				comment
 			);
-			setDetailsChanged("done");
+			setDetailsChanged(true);
 		} catch (error) {
 			console.log(error);
 		}
@@ -53,7 +54,7 @@ function VideoPlayerPage() {
 			await axios.delete(
 				`${baseUrl}/videos/${videoId}/comments/${commentId}?api_key=${apiKey}`
 			);
-			setDetailsChanged("done");
+			setDetailsChanged(true);
 		} catch (error) {
 			console.log(error);
 		}
@@ -62,7 +63,7 @@ function VideoPlayerPage() {
 	async function addLike() {
 		try {
 			const response = await axios.put(`${baseUrl}/videos/${videoId}/likes`);
-			setDetailsChanged("done");
+			setDetailsChanged(true);
 		} catch (error) {
 			console.log(error);
 		}
@@ -74,8 +75,8 @@ function VideoPlayerPage() {
 
 	useEffect(() => {
 		getMainVideo();
-		setDetailsChanged("waiting");
-	}, [videoList, videoId, detailssChanged]);
+		setDetailsChanged(false);
+	}, [videoList, videoId, detailsChanged]);
 
 	if (errorState) {
 		setTimeout(() => {
@@ -86,8 +87,8 @@ function VideoPlayerPage() {
 		return <div>Oops, that video doesn't exit. Taking you home.</div>;
 	}
 
-	if (!mainVideo) {
-		return <div>Loading...</div>;
+	if (!mainVideo || detailsChanged) {
+		return <Loading />;
 	}
 
 	return (
