@@ -21,9 +21,7 @@ function VideoPlayerPage() {
 		try {
 			const result = await axios.get(`${baseUrl}/videos?api_key=${apiKey}`);
 			setVideoList(result.data);
-		} catch (error) {
-			console.log(error);
-		}
+		} catch (error) {}
 	}
 
 	async function getMainVideo() {
@@ -45,9 +43,7 @@ function VideoPlayerPage() {
 				`${baseUrl}/videos/${videoId}/comments?api_key=${apiKey}`,
 				comment
 			);
-		} catch (error) {
-			console.log(error);
-		}
+		} catch (error) {}
 	}
 
 	async function deleteComment(commentId) {
@@ -57,9 +53,7 @@ function VideoPlayerPage() {
 			await axios.delete(
 				`${baseUrl}/videos/${videoId}/comments/${commentId}?api_key=${apiKey}`
 			);
-		} catch (error) {
-			console.log(error);
-		}
+		} catch (error) {}
 	}
 
 	async function addLike() {
@@ -67,9 +61,7 @@ function VideoPlayerPage() {
 
 		try {
 			await axios.put(`${baseUrl}/videos/${videoId}/likes`);
-		} catch (error) {
-			console.log(error);
-		}
+		} catch (error) {}
 	}
 
 	useEffect(() => {

@@ -52,9 +52,7 @@ function UploadPage() {
 	async function postVideo(video) {
 		try {
 			await axios.post(`${baseUrl}/videos`, video);
-		} catch (error) {
-			console.log(error);
-		}
+		} catch (error) {}
 	}
 
 	async function saveImage(file) {
@@ -69,9 +67,7 @@ function UploadPage() {
 				{ headers: { "Content-Type": "multipart/form-data" } }
 			);
 			setThumbnailId(response.data);
-		} catch (error) {
-			console.log(error);
-		}
+		} catch (error) {}
 	}
 
 	function handleSubmit(event) {
@@ -119,7 +115,6 @@ function UploadPage() {
 	}
 
 	if (isLoading) {
-		console.log("in here");
 		return <Loading type='upload' />;
 	}
 
