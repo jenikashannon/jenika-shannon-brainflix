@@ -75,7 +75,7 @@ function VideoPlayerPage() {
 
 	useEffect(() => {
 		getMainVideo();
-		setDetailsChanged(false);
+		// setDetailsChanged(false);
 	}, [videoList, videoId, detailsChanged]);
 
 	if (errorState) {

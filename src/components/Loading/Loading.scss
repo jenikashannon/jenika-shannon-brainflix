@@ -1,0 +1,26 @@
+@use "../../styles/partials/padding";
+
+@keyframes flash {
+	0% {
+		opacity: 100%;
+	}
+	50% {
+		opacity: 10%;
+	}
+	100% {
+		opacity: 100%;
+	}
+}
+
+.loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	@include padding.section-padding;
+
+	&__logo {
+		width: 80%;
+		animation: flash 2s ease-in-out 0s infinite;
+	}
+}
