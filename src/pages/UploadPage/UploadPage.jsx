@@ -11,6 +11,9 @@ import { apiKey, baseUrl, publicPath } from "../../consts";
 
 import "./UploadPage.scss";
 
+let videoTemplate;
+let file;
+
 function UploadPage() {
 	const [isPublished, setIsPublished] = useState(false);
 	const [thumbnailId, setThumbnailId] = useState("");
@@ -21,13 +24,19 @@ function UploadPage() {
 	useEffect(() => {
 		if (thumbnailId) {
 			const videoWithImage = {
-				...newVideo,
+				...videoTemplate,
 				image: `${publicPath}/${thumbnailId}`,
 			};
 
-			postVideo(videoWithImage);
+			setNewVideo(videoWithImage);
 		}
 	}, [thumbnailId]);
+
+	useEffect(() => {
+		if (newVideo) {
+			postVideo(newVideo);
+		}
+	}, [newVideo]);
 
 	async function postVideo(video) {
 		try {
@@ -57,13 +66,12 @@ function UploadPage() {
 	function handleSubmit(event) {
 		event.preventDefault();
 
-		const file = event.target.uploadImage.files[0];
-		saveImage(file);
+		file = event.target.uploadImage.files[0];
 
-		setNewVideo({
+		videoTemplate = {
 			title: event.target.uploadTitle.value,
 			description: event.target.uploadDescription.value,
-			image: "",
+			image: "http://localhost:1700/images/upload-video-preview.jpg",
 			channel: "A very cool channel",
 			views: 0,
 			likes: 0,
@@ -71,7 +79,13 @@ function UploadPage() {
 			video: "import from public",
 			timestamp: new Date().getTime(),
 			comments: [],
-		});
+		};
+
+		if (file) {
+			saveImage(file);
+		} else {
+			setNewVideo(videoTemplate);
+		}
 
 		// trigger success alert
 		setIsPublished(true);
