@@ -38,32 +38,35 @@ function VideoPlayerPage() {
 	}
 
 	async function addComment(comment) {
+		setDetailsChanged(true);
+
 		try {
 			await axios.post(
 				`${baseUrl}/videos/${videoId}/comments?api_key=${apiKey}`,
 				comment
 			);
-			setDetailsChanged(true);
 		} catch (error) {
 			console.log(error);
 		}
 	}
 
 	async function deleteComment(commentId) {
+		setDetailsChanged(true);
+
 		try {
 			await axios.delete(
 				`${baseUrl}/videos/${videoId}/comments/${commentId}?api_key=${apiKey}`
 			);
-			setDetailsChanged(true);
 		} catch (error) {
 			console.log(error);
 		}
 	}
 
 	async function addLike() {
+		setDetailsChanged(true);
+
 		try {
-			const response = await axios.put(`${baseUrl}/videos/${videoId}/likes`);
-			setDetailsChanged(true);
+			await axios.put(`${baseUrl}/videos/${videoId}/likes`);
 		} catch (error) {
 			console.log(error);
 		}
@@ -75,7 +78,14 @@ function VideoPlayerPage() {
 
 	useEffect(() => {
 		getMainVideo();
+
+		// comment out to force load state
 		setDetailsChanged(false);
+
+		// uncomment to force load state
+		// setTimeout(() => {
+		// 	setDetailsChanged(false);
+		// }, 5000);
 	}, [videoList, videoId, detailsChanged]);
 
 	if (errorState) {
