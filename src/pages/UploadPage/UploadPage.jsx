@@ -4,6 +4,7 @@ import FormInput from "../../components/FormInput/FormInput";
 import FormTextArea from "../../components/FormTextArea/FormTextArea";
 import FormFile from "../../components/FormFile/FormFile";
 import Button from "../../components/Button/Button";
+import Loading from "../../components/Loading/Loading";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -18,6 +19,7 @@ function UploadPage() {
 	const [isPublished, setIsPublished] = useState(false);
 	const [thumbnailId, setThumbnailId] = useState("");
 	const [newVideo, setNewVideo] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -65,6 +67,8 @@ function UploadPage() {
 
 	function handleSubmit(event) {
 		event.preventDefault();
+		setIsLoading(true);
+
 		const title = event.target.uploadTitle.value;
 		const description = event.target.uploadDescription.value;
 
@@ -90,12 +94,13 @@ function UploadPage() {
 		}
 
 		// trigger success alert
-		setIsPublished(true);
+		// setIsLoading(false);
+		// setIsPublished(true);
 
 		// navigate to home page.
-		setTimeout(() => {
-			navigate("/");
-		}, 1000);
+		// setTimeout(() => {
+		// 	navigate("/");
+		// }, 1000);
 
 		// clear input fields
 		event.target.uploadTitle.value = "";
@@ -105,6 +110,10 @@ function UploadPage() {
 
 	function handleCancel(event) {
 		navigate("/");
+	}
+
+	if (isLoading) {
+		return <Loading type='upload' />;
 	}
 
 	return (
