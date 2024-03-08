@@ -65,12 +65,14 @@ function UploadPage() {
 
 	function handleSubmit(event) {
 		event.preventDefault();
+		const title = event.target.uploadTitle.value;
+		const description = event.target.uploadDescription.value;
 
 		file = event.target.uploadImage.files[0];
 
 		videoTemplate = {
-			title: event.target.uploadTitle.value,
-			description: event.target.uploadDescription.value,
+			title: title,
+			description: description,
 			image: "http://localhost:1700/images/upload-video-preview.jpg",
 			channel: "A very cool channel",
 			views: 0,

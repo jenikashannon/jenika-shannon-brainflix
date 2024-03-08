@@ -6,6 +6,11 @@
 .form-file {
 	display: flex;
 	flex-direction: column;
+	padding-bottom: 1rem;
+
+	@include mixins.desktop {
+		padding-bottom: 0;
+	}
 
 	&__label {
 		@extend .labels-and-buttons;
