@@ -5,6 +5,7 @@ let file;
 function FormFile({
 	thumbnail,
 	setThumbnail,
+	setThumbnailFile,
 	saveImage,
 	deleteImage,
 	thumbnailDefault,
@@ -13,20 +14,12 @@ function FormFile({
 		event.preventDefault();
 
 		// incoming image from form
-		const newFile = event.target.files[0];
+		const userFile = event.target.files[0];
+		setThumbnailFile(userFile);
 
-		// delete old image, if one was saved prior
-		if (file) {
-			deleteImage();
-		}
-
-		// set incoming image as file to save
-		file = newFile;
-
-		// if there is an incoming file, save it,
-		// otherwise use default thumbnail
-		if (file) {
-			saveImage(file);
+		if (userFile) {
+			const userThumbnail = URL.createObjectURL(userFile);
+			setThumbnail(userThumbnail);
 		} else {
 			setThumbnail(thumbnailDefault);
 		}

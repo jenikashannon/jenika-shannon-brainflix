@@ -3,7 +3,7 @@ import VideoMedia from "../../components/VideoMedia/VideoMedia";
 import VideoDetails from "../../components/VideoDetails/VideoDetails";
 import NextVideos from "../../components/NextVideos/NextVideos";
 import Loading from "../../components/Loading/Loading";
-import { apiKey, baseUrl } from "../../consts";
+import { baseUrl } from "../../consts";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -19,16 +19,14 @@ function VideoPlayerPage() {
 
 	async function getVideos() {
 		try {
-			const result = await axios.get(`${baseUrl}/videos?api_key=${apiKey}`);
+			const result = await axios.get(`${baseUrl}/videos`);
 			setVideoList(result.data);
 		} catch (error) {}
 	}
 
 	async function getMainVideo() {
 		try {
-			const result = await axios.get(
-				`${baseUrl}/videos/${videoId}?api_key=${apiKey}`
-			);
+			const result = await axios.get(`${baseUrl}/videos/${videoId}`);
 			setMainVideo(result.data);
 		} catch (error) {
 			setErrorState(true);
@@ -39,10 +37,7 @@ function VideoPlayerPage() {
 		setDetailsChanged(true);
 
 		try {
-			await axios.post(
-				`${baseUrl}/videos/${videoId}/comments?api_key=${apiKey}`,
-				comment
-			);
+			await axios.post(`${baseUrl}/videos/${videoId}/comments`, comment);
 		} catch (error) {}
 	}
 
@@ -50,9 +45,7 @@ function VideoPlayerPage() {
 		setDetailsChanged(true);
 
 		try {
-			await axios.delete(
-				`${baseUrl}/videos/${videoId}/comments/${commentId}?api_key=${apiKey}`
-			);
+			await axios.delete(`${baseUrl}/videos/${videoId}/comments/${commentId}`);
 		} catch (error) {}
 	}
 

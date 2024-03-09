@@ -7,7 +7,7 @@ import Loading from "../../components/Loading/Loading";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { apiKey, baseUrl, publicPath } from "../../consts";
+import { baseUrl, publicPath } from "../../consts";
 
 import "./UploadPage.scss";
 
@@ -18,6 +18,7 @@ function UploadPage() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [isPublished, setIsPublished] = useState(false);
 	const [thumbnail, setThumbnail] = useState(thumbnailDefault);
+	const [thumbnailFile, setThumbnailFile] = useState(null);
 	const [thumbnailId, setThumbnailId] = useState("");
 	const [newVideo, setNewVideo] = useState(null);
 
@@ -75,6 +76,10 @@ function UploadPage() {
 	function handleSubmit(event) {
 		event.preventDefault();
 		setIsLoading(true);
+
+		while (!thumbnailFile) {}
+
+		saveImage(thumbnailFile);
 
 		const title = event.target.uploadTitle.value;
 		const description = event.target.uploadDescription.value;
@@ -143,6 +148,7 @@ function UploadPage() {
 						<FormFile
 							thumbnail={thumbnail}
 							setThumbnail={setThumbnail}
+							setThumbnailFile={setThumbnailFile}
 							saveImage={saveImage}
 							deleteImage={deleteImage}
 							thumbnailDefault={thumbnailDefault}

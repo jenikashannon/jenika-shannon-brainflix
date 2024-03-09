@@ -1,6 +1,6 @@
 import "./VideoList.scss";
 import VideoCard from "../VideoCard/VideoCard";
-import { apiKey, baseUrl } from "../../consts";
+import { baseUrl } from "../../consts";
 import axios from "axios";
 
 function VideoList({ mainVideoId, videoList }) {
