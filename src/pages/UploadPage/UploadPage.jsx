@@ -11,33 +11,68 @@ import { baseUrl, publicPath } from "../../consts";
 
 import "./UploadPage.scss";
 
+let title;
+let description;
+
 function UploadPage() {
 	const thumbnailDefault =
 		"http://localhost:1700/images/upload-video-preview.jpg";
 
 	const [isLoading, setIsLoading] = useState(false);
-	const [isPublished, setIsPublished] = useState(false);
+	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [thumbnail, setThumbnail] = useState(thumbnailDefault);
 	const [thumbnailFile, setThumbnailFile] = useState(null);
-	const [thumbnailId, setThumbnailId] = useState("");
+	const [newThumbnailId, setNewThumbnailId] = useState(null);
+	const [newThumbnail, setNewThumbnail] = useState(null);
 	const [newVideo, setNewVideo] = useState(null);
 
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (thumbnailId) {
-			const imagePath = `${publicPath}/${thumbnailId}`;
-			setThumbnail(imagePath);
+		if (isSubmitted) {
+			if (thumbnailFile) {
+				saveImage(thumbnailFile);
+			} else {
+				setNewThumbnail(thumbnailDefault);
+			}
 		}
-	}, [thumbnailId]);
+	}, [isSubmitted]);
+
+	useEffect(() => {
+		if (newThumbnailId) {
+			const imagePath = `${publicPath}/${newThumbnailId}`;
+			setNewThumbnail(imagePath);
+		}
+	}, [newThumbnailId]);
+
+	useEffect(() => {
+		if (newThumbnail) {
+			const videoTemplate = {
+				title: title || "(No Title)",
+				description: description || "(No Description)",
+				image: newThumbnail,
+				channel: "A very cool channel",
+				views: "0",
+				likes: "0",
+				duration: "2:17",
+				video: "import from public",
+				timestamp: new Date().getTime(),
+				comments: [],
+			};
+
+			// comment out to force loading state
+			setNewVideo(videoTemplate);
+
+			// uncomment to force loading state
+			// setTimeout(() => {
+			// 	setNewVideo(videoTemplate);
+			// }, 5000);
+		}
+	}, [newThumbnail]);
 
 	useEffect(() => {
 		if (newVideo) {
 			postVideo(newVideo);
-
-			// trigger success alert
-			setIsLoading(false);
-			setIsPublished(true);
 
 			// navigate to home page
 			setTimeout(() => {
@@ -63,47 +98,17 @@ function UploadPage() {
 				formData,
 				{ headers: { "Content-Type": "multipart/form-data" } }
 			);
-			setThumbnailId(response.data);
-		} catch (error) {}
-	}
-
-	async function deleteImage() {
-		try {
-			await axios.patch(`${baseUrl}/videos/thumbnail`, { file: thumbnail });
+			setNewThumbnailId(response.data);
 		} catch (error) {}
 	}
 
 	function handleSubmit(event) {
 		event.preventDefault();
 		setIsLoading(true);
+		setIsSubmitted(true);
 
-		while (!thumbnailFile) {}
-
-		saveImage(thumbnailFile);
-
-		const title = event.target.uploadTitle.value;
-		const description = event.target.uploadDescription.value;
-
-		const videoTemplate = {
-			title: title || "(No Title)",
-			description: description || "(No Description)",
-			image: thumbnail,
-			channel: "A very cool channel",
-			views: "0",
-			likes: "0",
-			duration: "2:17",
-			video: "import from public",
-			timestamp: new Date().getTime(),
-			comments: [],
-		};
-
-		// comment out to force loading state
-		setNewVideo(videoTemplate);
-
-		// uncomment to force loading state
-		// setTimeout(() => {
-		// 	setNewVideo(videoTemplate);
-		// }, 5000);
+		title = event.target.uploadTitle.value;
+		description = event.target.uploadDescription.value;
 
 		// clear input fields
 		event.target.uploadTitle.value = "";
@@ -146,11 +151,8 @@ function UploadPage() {
 							value='My description'
 						/>
 						<FormFile
-							thumbnail={thumbnail}
 							setThumbnail={setThumbnail}
 							setThumbnailFile={setThumbnailFile}
-							saveImage={saveImage}
-							deleteImage={deleteImage}
 							thumbnailDefault={thumbnailDefault}
 						/>
 					</div>
@@ -162,12 +164,6 @@ function UploadPage() {
 					<Button type='cancel--mobile' handleCancel={handleCancel} />
 				</div>
 			</form>
-			{isPublished ? ( // if upload successful, render alert
-				<div className='upload-page__alert'>
-					Upload successful! <br />
-					Taking you home.
-				</div>
-			) : null}
 		</div>
 	);
 }
