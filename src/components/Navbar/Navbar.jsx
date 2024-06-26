@@ -4,9 +4,10 @@ import Avatar from "../Avatar/Avatar";
 import Button from "../Button/Button";
 import Divider from "../Divider/Divider";
 import { Link } from "react-router-dom";
+import { publicPath } from "../../consts";
 
 const NavBar = () => {
-	const userAvatar = "http://localhost:1700/images/Mohan-muruge.jpg";
+	const userAvatar = `${publicPath}/Mohan-muruge.jpg`;
 
 	return (
 		<>

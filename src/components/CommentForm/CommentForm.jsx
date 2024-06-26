@@ -2,9 +2,10 @@ import "./CommentForm.scss";
 import Avatar from "../Avatar/Avatar";
 import Button from "../Button/Button";
 import FormTextArea from "../FormTextArea/FormTextArea";
+import { publicPath } from "../../consts";
 
 function CommentForm({ count, addComment }) {
-	const userAvatar = "http://localhost:1700/images/Mohan-muruge.jpg";
+	const userAvatar = `${publicPath}/Mohan-muruge.jpg`;
 
 	function handleSubmit(event) {
 		event.preventDefault();
