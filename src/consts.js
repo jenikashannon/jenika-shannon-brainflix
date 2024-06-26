@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:1700";
+const baseUrl = "http://brainflix-api.dichotomi.com";
 const publicPath = `${baseUrl}/images`;
 
 export { baseUrl, publicPath };
