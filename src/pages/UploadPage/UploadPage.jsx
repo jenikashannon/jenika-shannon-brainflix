@@ -15,8 +15,7 @@ let title;
 let description;
 
 function UploadPage() {
-	const thumbnailDefault =
-		"http://localhost:1700/images/upload-video-preview.jpg";
+	const thumbnailDefault = `${publicPath}/upload-video-preview.jpg`;
 
 	const [isLoading, setIsLoading] = useState(false);
 	const [isSubmitted, setIsSubmitted] = useState(false);
