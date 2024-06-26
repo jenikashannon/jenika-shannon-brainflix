@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/jenika-shannon-brainflix/static/css/main.983c9189.css",
+    "main.js": "/jenika-shannon-brainflix/static/js/main.9bda2818.js",
+    "static/media/AvenirNextLTPro-Bold.otf": "/jenika-shannon-brainflix/static/media/AvenirNextLTPro-Bold.abfbc7167526a2d9f205.otf",
+    "static/media/AvenirNextLTPro-Demi.otf": "/jenika-shannon-brainflix/static/media/AvenirNextLTPro-Demi.318a19f02737e3a265c8.otf",
+    "static/media/AvenirNextLTPro-Regular.otf": "/jenika-shannon-brainflix/static/media/AvenirNextLTPro-Regular.75d8c490a81ae1a6be46.otf",
+    "static/media/BrainFlix-logo.svg": "/jenika-shannon-brainflix/static/media/BrainFlix-logo.e2aad4fb297e98c251c75ff31699a7af.svg",
+    "index.html": "/jenika-shannon-brainflix/index.html",
+    "static/media/search.svg": "/jenika-shannon-brainflix/static/media/search.b2de04bd644372446a50.svg",
+    "static/media/upload.svg": "/jenika-shannon-brainflix/static/media/upload.5883ade39f5afef46caee6a664643bad.svg",
+    "static/media/views.svg": "/jenika-shannon-brainflix/static/media/views.8b6d21c6dac0adba201d39b7392ea6cf.svg",
+    "static/media/likes.svg": "/jenika-shannon-brainflix/static/media/likes.246cd8f4356b27c4d0cb18d1be8605d2.svg",
+    "static/media/add_comment.svg": "/jenika-shannon-brainflix/static/media/add_comment.26bc7a200a77fd1eb3c8aec190e24f1e.svg",
+    "main.983c9189.css.map": "/jenika-shannon-brainflix/static/css/main.983c9189.css.map",
+    "main.9bda2818.js.map": "/jenika-shannon-brainflix/static/js/main.9bda2818.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.983c9189.css",
+    "static/js/main.9bda2818.js"
+  ]
+}
